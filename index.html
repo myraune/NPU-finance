@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NPFIS | North Park University Finance and Investment Society</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body id="top" data-page="home">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="page">
+      <header class="site-header">
+        <div class="container header-inner">
+          <a class="brand" href="index.html#top">
+            <img
+              class="logo"
+              src="assets/npfis-logo.png"
+              alt="North Park University Finance and Investment Society"
+            />
+            <div class="brand-text">
+              <span>North Park University</span>
+              <strong>Finance and Investment Society</strong>
+            </div>
+          </a>
+          <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" type="button">
+            Menu
+          </button>
+          <nav id="primary-nav" class="nav">
+            <a href="index.html" aria-current="page">Home</a>
+            <a href="about.html">About</a>
+            <a href="leadership.html">Leadership</a>
+            <a href="events.html">Events</a>
+            <a href="join.html">Join</a>
+            <a href="contact.html" class="nav-cta">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <nav class="storyline" aria-label="Storyline">
+        <div class="storyline-progress" aria-hidden="true"><span></span></div>
+        <a class="storyline-item" href="#home">Home</a>
+        <a class="storyline-item" href="#snapshot">Snapshot</a>
+        <a class="storyline-item" href="#panel">Signals</a>
+        <a class="storyline-item" href="#lab">Investment Lab</a>
+        <a class="storyline-item" href="#founders">Founders</a>
+        <a class="storyline-item" href="#events">Events</a>
+        <a class="storyline-item" href="#join">Join</a>
+        <a class="storyline-item" href="#contact">Contact</a>
+      </nav>
+
+      <main id="main">
+        <section
+          id="home"
+          data-section
+          class="image-band reveal"
+          style="--bg-image: url('assets/northpark-campus-sunset.jpg')"
+          aria-label="North Park University campus"
+        >
+          <div class="container image-band-content">
+            <span>North Park University</span>
+          </div>
+        </section>
+
+        <section class="hero reveal" aria-label="Hero">
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <p class="eyebrow">North Park University</p>
+              <h1>Build investment insight. Lead with confidence.</h1>
+              <p class="lead">
+                The Finance and Investment Society is a student-led hub for market literacy,
+                portfolio practice, and mentorship. We turn classroom learning into real
+                decision-making.
+              </p>
+              <div class="cta-row">
+                <a class="btn primary" href="join.html">Become a founding member</a>
+                <a class="btn ghost" href="events.html">See upcoming sessions</a>
+              </div>
+            </div>
+            <div class="hero-data">
+              <p class="eyebrow">Focus areas</p>
+              <ul class="line-list">
+                <li>Valuation and modeling fundamentals</li>
+                <li>Portfolio lab and stock pitch practice</li>
+                <li>Mentorship and Chicago finance network</li>
+              </ul>
+              <div class="ticker">Chicago &middot; Portfolio Lab &middot; Alumni Network</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="ticker-band reveal" aria-label="Market pulse">
+          <div class="ticker-track">
+            <span class="ticker-item">
+              Market Pulse &middot; Valuation &middot; Portfolio Lab &middot; Research Sprints &middot; Chicago Finance
+              Network &middot; RSO Approved
+            </span>
+            <span class="ticker-item">
+              Market Pulse &middot; Valuation &middot; Portfolio Lab &middot; Research Sprints &middot; Chicago Finance
+              Network &middot; RSO Approved
+            </span>
+          </div>
+        </section>
+
+        <section id="snapshot" data-section class="section-block reveal" aria-label="Market snapshot">
+          <div class="container">
+            <div class="section-header">
+              <div>
+                <p class="eyebrow">Market snapshot</p>
+                <h2>Built for students who want real finance experience.</h2>
+              </div>
+            </div>
+            <div class="finance-grid">
+              <article>
+                <span>RSO Approved</span>
+                <strong>Official student organization</strong>
+                <p>Recognized and supported by North Park University.</p>
+              </article>
+              <article>
+                <span>Portfolio Lab</span>
+                <strong>Thesis-driven investing</strong>
+                <p>Build research, defend ideas, and improve decision-making.</p>
+              </article>
+              <article>
+                <span>Career Signals</span>
+                <strong>Mentors and industry access</strong>
+                <p>Connect with alumni and professionals in Chicago finance.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="panel" data-section class="section-block reveal" aria-label="Market panel">
+          <div class="container market-panel">
+            <div>
+              <p class="eyebrow">Market panel</p>
+              <h2>Track the signals students learn to read.</h2>
+              <p class="lead">Hover a sector to see how we interpret trends inside the portfolio lab.</p>
+              <div class="market-tabs" role="tablist" aria-label="Market sectors">
+                <button class="market-tab is-active" type="button" data-sector="equities" role="tab">
+                  Equities
+                </button>
+                <button class="market-tab" type="button" data-sector="fixed" role="tab">
+                  Fixed Income
+                </button>
+                <button class="market-tab" type="button" data-sector="macro" role="tab">
+                  Macro
+                </button>
+                <button class="market-tab" type="button" data-sector="esg" role="tab">
+                  ESG
+                </button>
+                <button class="market-tab" type="button" data-sector="fintech" role="tab">
+                  FinTech
+                </button>
+              </div>
+            </div>
+            <div class="market-chart">
+              <svg viewBox="0 0 600 200" role="img" aria-label="Sector performance line">
+                <polyline
+                  id="market-line"
+                  points="0,150 80,120 160,130 240,90 320,110 400,70 480,85 560,50 600,60"
+                  fill="none"
+                  stroke="#0b1c2b"
+                  stroke-width="3"
+                />
+                <polyline
+                  id="market-line-secondary"
+                  points="0,160 80,150 160,155 240,130 320,145 400,120 480,130 560,105 600,110"
+                  fill="none"
+                  stroke="rgba(11, 28, 43, 0.35)"
+                  stroke-width="2"
+                />
+              </svg>
+              <p id="market-caption" class="market-caption" aria-live="polite">
+                Momentum improved over the past four weeks as students evaluated valuation gaps.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="lab" data-section class="section-block reveal" aria-label="Investment lab">
+          <div class="container split">
+            <div>
+              <p class="eyebrow">Investment lab</p>
+              <h2>Build thesis-driven investors.</h2>
+              <p>
+                We focus on practical experience - analysts write theses, teams pitch live, and
+                portfolios are reviewed with disciplined feedback loops.
+              </p>
+              <ul class="line-list">
+                <li>Weekly analyst notes and valuation write-ups.</li>
+                <li>Stock pitch nights with peer review.</li>
+                <li>Long-term portfolio tracking and reflection.</li>
+              </ul>
+            </div>
+            <figure class="sparkline">
+              <svg viewBox="0 0 600 180" role="img" aria-label="Sample portfolio signal">
+                <polyline
+                  points="0,140 80,120 160,130 240,90 320,110 400,70 480,85 560,50 600,60"
+                  fill="none"
+                  stroke="#0b1c2b"
+                  stroke-width="3"
+                />
+                <polyline
+                  points="0,150 80,140 160,150 240,120 320,130 400,100 480,110 560,90 600,95"
+                  fill="none"
+                  stroke="rgba(11, 28, 43, 0.35)"
+                  stroke-width="2"
+                />
+              </svg>
+              <figcaption>Sample portfolio signal</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="preview-section reveal" aria-label="About preview">
+          <div class="container split">
+            <div>
+              <p class="eyebrow">About</p>
+              <h2>What NPFIS is building.</h2>
+              <p>
+                NPFIS exists to make finance approachable. We pair technical training with
+                mentorship and values-based leadership so students can move from curiosity
+                to confident decision-making.
+              </p>
+            </div>
+            <div class="split-action">
+              <a class="link" href="about.html">Learn more about the mission</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-block reveal" aria-label="Founders photo">
+          <div class="container">
+            <figure class="media-block">
+              <img src="assets/founders-steps.jpg" alt="NPFIS founders outside campus" />
+              <figcaption>Founders of NPFIS</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section id="founders" data-section class="preview-section reveal" aria-label="Founders">
+          <div class="container">
+            <div class="section-header">
+              <div>
+                <p class="eyebrow">Founders</p>
+                <h2>Building the Finance &amp; Investment Society.</h2>
+              </div>
+              <a class="link" href="leadership.html">Leadership page</a>
+            </div>
+            <div class="founder-list">
+              <div class="founder-row">
+                <div>
+                  <strong>Tyler Habetler</strong>
+                  <span>Co-Founder</span>
+                </div>
+                <a class="linkedin-link" href="https://www.linkedin.com/in/tylerhabetler/" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="currentColor"
+                      d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 8.75h3.96V21H3zM9.5 8.75h3.8v1.68h.05c.53-.99 1.83-2.02 3.76-2.02C20.6 8.41 22 10.1 22 13.34V21h-3.96v-6.75c0-1.61-.03-3.68-2.24-3.68-2.24 0-2.58 1.75-2.58 3.56V21H9.5z"
+                    />
+                  </svg>
+                  LinkedIn
+                </a>
+              </div>
+              <div class="founder-row">
+                <div>
+                  <strong>Temirlan Avtandilov</strong>
+                  <span>Co-Founder</span>
+                </div>
+                <a class="linkedin-link" href="https://www.linkedin.com/in/temirlan-avtandilov/" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="currentColor"
+                      d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 8.75h3.96V21H3zM9.5 8.75h3.8v1.68h.05c.53-.99 1.83-2.02 3.76-2.02C20.6 8.41 22 10.1 22 13.34V21h-3.96v-6.75c0-1.61-.03-3.68-2.24-3.68-2.24 0-2.58 1.75-2.58 3.56V21H9.5z"
+                    />
+                  </svg>
+                  LinkedIn
+                </a>
+              </div>
+              <div class="founder-row">
+                <div>
+                  <strong>Mohamed Zarook Mohamed Shamri</strong>
+                  <span>Co-Founder</span>
+                </div>
+                <a class="linkedin-link" href="https://www.linkedin.com/in/mohamedshamri/" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="currentColor"
+                      d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 8.75h3.96V21H3zM9.5 8.75h3.8v1.68h.05c.53-.99 1.83-2.02 3.76-2.02C20.6 8.41 22 10.1 22 13.34V21h-3.96v-6.75c0-1.61-.03-3.68-2.24-3.68-2.24 0-2.58 1.75-2.58 3.56V21H9.5z"
+                    />
+                  </svg>
+                  LinkedIn
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-block reveal" aria-label="Founders note">
+          <div class="container quote-block">
+            <p class="eyebrow">Founders note</p>
+            <blockquote>
+              We started NPFIS to give students hands-on finance experience and a community
+              that grows beyond the classroom.
+            </blockquote>
+            <div class="ticker">North Park University &middot; Registered Student Organization</div>
+          </div>
+        </section>
+
+        <section id="events" data-section class="preview-section reveal" aria-label="Events preview">
+          <div class="container">
+            <div class="section-header">
+              <div>
+                <p class="eyebrow">Events</p>
+                <h2>Upcoming sessions and workshops.</h2>
+              </div>
+              <a class="link" href="events.html">View all events</a>
+            </div>
+            <div class="event-list">
+              <div class="event-row">
+                <div>
+                  <span class="event-tag">Workshop</span>
+                  <h3>Market Basics Bootcamp</h3>
+                  <p>How markets move, how to read financial news, and build a watchlist.</p>
+                </div>
+                <span class="event-meta">2 hours &middot; In-person</span>
+              </div>
+              <div class="event-row">
+                <div>
+                  <span class="event-tag">Panel</span>
+                  <h3>Chicago Finance Career Night</h3>
+                  <p>Meet alumni across banking, consulting, and fintech.</p>
+                </div>
+                <span class="event-meta">Evening &middot; Alumni Hall</span>
+              </div>
+              <div class="event-row">
+                <div>
+                  <span class="event-tag">Portfolio Lab</span>
+                  <h3>Student Stock Pitch Showcase</h3>
+                  <p>Teams present long-term investment theses and peer review live.</p>
+                </div>
+                <span class="event-meta">Weekly &middot; Classroom TBD</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="join" data-section class="preview-section reveal" aria-label="Join preview">
+          <div class="container split">
+            <div>
+              <p class="eyebrow">Join</p>
+              <h2>Become a founding member.</h2>
+              <p>
+                We are building the first cohort now. Founding members shape the culture,
+                topics, and portfolio lab focus.
+              </p>
+              <ol class="steps-list">
+                <li>Introduce yourself and share your goals.</li>
+                <li>Select a track that fits your interests.</li>
+                <li>Start with the first workshop and cohort meet-up.</li>
+              </ol>
+            </div>
+            <div class="split-action">
+              <a class="btn primary" href="join.html">Apply for membership</a>
+              <a class="link" href="join.html">Explore membership tracks</a>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" data-section class="preview-section reveal" aria-label="Contact preview">
+          <div class="container split">
+            <div>
+              <p class="eyebrow">Contact</p>
+              <h2>Connect with the leadership team.</h2>
+              <p>
+                We welcome partnerships, guest speakers, and collaboration across the North
+                Park community.
+              </p>
+              <div class="detail-list">
+                <p><strong>Email</strong> npfis@northpark.edu</p>
+                <p><strong>Instagram</strong> @npufinance</p>
+                <p><strong>Meeting time</strong> Thursdays at 6:00 PM (launching soon)</p>
+              </div>
+            </div>
+            <div class="split-action">
+              <a class="btn dark" href="contact.html">Go to contact page</a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <div>
+            <strong>North Park University Finance and Investment Society</strong>
+            <p>Faith-forward finance education and investment leadership.</p>
+          </div>
+          <p>&copy; <span id="year"></span> NPFIS. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
