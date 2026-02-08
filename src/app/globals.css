@@ -1,0 +1,221 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════
+   NPFIS Design System — Premium Dark Elevated
+   ═══════════════════════════════════════════════════ */
+
+@theme {
+  /* ── Surface Elevation System ── */
+  --color-base:       #06090f;
+  --color-surface-0:  #0a0f1a;
+  --color-surface-1:  #0f1629;
+  --color-surface-2:  #141d35;
+  --color-surface-3:  #1a2744;
+
+  /* ── Accent: Refined Gold ── */
+  --color-accent:       #d4a843;
+  --color-accent-light: #e8c36a;
+  --color-accent-dim:   #a07e2e;
+
+  /* ── Text Hierarchy ── */
+  --color-text-primary:   #eaedf2;
+  --color-text-secondary: #8a95a8;
+  --color-text-tertiary:  #4a5568;
+  --color-text-muted:     #2d3748;
+
+  /* ── Semantic ── */
+  --color-positive: #34d399;
+  --color-negative: #f87171;
+  --color-info:     #60a5fa;
+
+  /* ── Legacy Aliases (backward compat) ── */
+  --color-dark:       #06090f;
+  --color-navy:       #1a2744;
+  --color-navy-light: #141d35;
+  --color-navy-dark:  #0a0f1a;
+  --color-gold:       #d4a843;
+  --color-gold-light: #e8c36a;
+  --color-gold-dark:  #a07e2e;
+  --color-cream:      #eaedf2;
+  --color-cream-dark: #8a95a8;
+  --color-muted:      #4a5568;
+}
+
+/* ═══════════════════════════════════════════════════
+   Base Styles
+   ═══════════════════════════════════════════════════ */
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-inter, "Inter"), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--color-base);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading, "Inter"), system-ui, sans-serif;
+  letter-spacing: -0.025em;
+}
+
+.font-data {
+  font-family: var(--font-mono, ui-monospace), monospace;
+  font-feature-settings: "tnum";
+}
+
+/* ═══════════════════════════════════════════════════
+   Glass Morphism
+   ═══════════════════════════════════════════════════ */
+
+.glass {
+  background: rgba(10, 15, 26, 0.6);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-strong {
+  background: rgba(10, 15, 26, 0.8);
+  backdrop-filter: blur(40px) saturate(1.4);
+  -webkit-backdrop-filter: blur(40px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-accent {
+  background: rgba(10, 15, 26, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(212, 168, 67, 0.12);
+}
+
+/* ═══════════════════════════════════════════════════
+   Glow Effects
+   ═══════════════════════════════════════════════════ */
+
+.glow-accent {
+  box-shadow: 0 0 20px rgba(212, 168, 67, 0.15),
+              0 0 60px rgba(212, 168, 67, 0.05);
+}
+
+.glow-accent-hover:hover {
+  box-shadow: 0 0 30px rgba(212, 168, 67, 0.25),
+              0 0 80px rgba(212, 168, 67, 0.1);
+}
+
+.glow-card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3),
+              0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* ═══════════════════════════════════════════════════
+   Background Patterns
+   ═══════════════════════════════════════════════════ */
+
+.bg-grid {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+/* ═══════════════════════════════════════════════════
+   Gradient Borders
+   ═══════════════════════════════════════════════════ */
+
+.border-gradient {
+  position: relative;
+}
+.border-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(212,168,67,0.3), transparent 50%, rgba(96,165,250,0.15));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════
+   Horizontal Rule
+   ═══════════════════════════════════════════════════ */
+
+.hr-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4a843, transparent);
+  opacity: 0.3;
+}
+
+/* ═══════════════════════════════════════════════════
+   Animations & Keyframes
+   ═══════════════════════════════════════════════════ */
+
+/* Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee { animation: marquee 30s linear infinite; }
+.marquee:hover { animation-play-state: paused; }
+
+/* Reveal on scroll (for hero elements) */
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(30px) scale(0.97); filter: blur(4px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+.reveal {
+  opacity: 0;
+  animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.reveal-d1 { animation-delay: 0.15s; }
+.reveal-d2 { animation-delay: 0.3s; }
+.reveal-d3 { animation-delay: 0.45s; }
+.reveal-d4 { animation-delay: 0.6s; }
+
+/* Floating orbs */
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(30px, -20px); }
+  66% { transform: translate(-20px, 15px); }
+}
+
+/* Clip path reveal */
+@keyframes clipReveal {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0); }
+}
+.clip-reveal { animation: clipReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+/* Pulse for live indicator */
+@keyframes pulse-live {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ═══════════════════════════════════════════════════
+   Image & Hover Effects
+   ═══════════════════════════════════════════════════ */
+
+.photo-zoom { transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+.group:hover .photo-zoom { transform: scale(1.05); }
+
+.image-reveal {
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .image-reveal {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* ═══════════════════════════════════════════════════
+   Scrollbar Hide
+   ═══════════════════════════════════════════════════ */
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
