@@ -18,7 +18,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <Logo size={36} />
+              <Logo size={48} />
               <span className="text-accent font-bold tracking-widest text-lg">NPFIS</span>
             </div>
             <p className="text-text-secondary text-sm leading-relaxed max-w-xs">
@@ -35,6 +35,7 @@ export default function Footer() {
                 { href: "/events", label: "Events" },
                 { href: "/team", label: "Team" },
                 { href: "/contact", label: "Contact" },
+                { href: "/admin", label: "Admin" },
               ].map((l) => (
                 <Link key={l.href} href={l.href} className="text-text-secondary text-sm hover:text-accent transition-colors duration-300 w-fit">
                   {l.label}
@@ -72,7 +73,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 pt-6 border-t border-white/[0.04] flex flex-col md:flex-row justify-between items-center gap-2">
           <p className="text-text-muted text-xs">&copy; {new Date().getFullYear()} NPFIS at North Park University. All rights reserved.</p>
-          <p className="text-text-muted text-xs">Built by NPFIS</p>
+          <p className="text-text-muted text-xs">Built by <a href="https://frostagroup.no/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors duration-300">Frosta Group</a></p>
         </div>
       </div>
     </footer>

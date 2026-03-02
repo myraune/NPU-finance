@@ -5,6 +5,7 @@ import StockTicker from "@/components/StockTicker";
 import ScrollReveal from "@/components/ScrollReveal";
 import GradientOrb from "@/components/GradientOrb";
 import AnimatedCounter from "@/components/AnimatedCounter";
+import LinkedInFeed from "@/components/LinkedInFeed";
 
 export default function Home() {
   return (
@@ -237,6 +238,28 @@ export default function Home() {
           </Link>
         </div>
       </ScrollReveal>
+
+      {/* ▌LINKEDIN — stay connected */}
+      <section className="bg-base py-20 md:py-28 px-6 overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <ScrollReveal>
+            <div className="text-center mb-12">
+              <p className="text-[11px] tracking-[0.15em] uppercase font-medium text-accent mb-2">
+                Stay Connected
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+                Latest from LinkedIn
+              </h2>
+              <p className="text-text-tertiary text-sm mt-3 max-w-md mx-auto">
+                Follow our journey, insights, and upcoming events.
+              </p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <LinkedInFeed />
+          </ScrollReveal>
+        </div>
+      </section>
 
       {/* ▌CTA — full width with orbs */}
       <section className="relative bg-surface-0 py-32 md:py-44 text-center px-6 overflow-hidden">

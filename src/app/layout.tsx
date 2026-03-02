@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import NoiseOverlay from "@/components/NoiseOverlay";
+import Providers from "@/components/Providers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,6 +30,10 @@ export const metadata: Metadata = {
   title: "NPFIS | North Park Finance & Investment Society",
   description:
     "North Park University's Finance and Investment Society — empowering students with financial literacy, investment knowledge, and professional development.",
+  icons: {
+    icon: "/favicon.png",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -39,10 +44,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} min-h-screen bg-base text-text-primary`}>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <NoiseOverlay />
+        <Providers>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <NoiseOverlay />
+        </Providers>
       </body>
     </html>
   );

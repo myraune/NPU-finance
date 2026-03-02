@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import Logo from "./Logo";
 
 const links = [
@@ -16,6 +17,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { data: session } = useSession();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -43,7 +45,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between px-5 md:px-6 h-16">
             {/* Logo + wordmark */}
             <Link href="/" className="flex items-center gap-2.5 group">
-              <Logo size={22} className="transition-all duration-300 group-hover:drop-shadow-[0_0_6px_rgba(212,168,67,0.4)]" />
+              <Logo size={36} className="transition-all duration-300 group-hover:drop-shadow-[0_0_6px_rgba(212,168,67,0.4)]" />
               <span className="text-text-primary font-bold tracking-widest text-sm">NPFIS</span>
             </Link>
 
@@ -65,12 +67,21 @@ export default function Navbar() {
                   )}
                 </Link>
               ))}
-              <Link
-                href="/contact"
-                className="ml-2 text-[13px] font-semibold text-base bg-accent hover:bg-accent-light rounded-lg px-5 py-2 transition-all duration-300 glow-accent-hover"
-              >
-                Join Us
-              </Link>
+              {session ? (
+                <Link
+                  href="/portal"
+                  className="ml-2 text-[13px] font-semibold text-base bg-accent hover:bg-accent-light rounded-lg px-5 py-2 transition-all duration-300 glow-accent-hover"
+                >
+                  Portal
+                </Link>
+              ) : (
+                <Link
+                  href="/login"
+                  className="ml-2 text-[13px] font-semibold text-base bg-accent hover:bg-accent-light rounded-lg px-5 py-2 transition-all duration-300 glow-accent-hover"
+                >
+                  Sign In
+                </Link>
+              )}
             </div>
 
             {/* Mobile hamburger */}
@@ -109,14 +120,25 @@ export default function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              onClick={() => setOpen(false)}
-              className="mt-4 text-sm font-semibold text-base bg-accent hover:bg-accent-light rounded-lg px-8 py-3.5 transition-all duration-300 glow-accent"
-              style={{ animation: `reveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both` }}
-            >
-              Join Us
-            </Link>
+            {session ? (
+              <Link
+                href="/portal"
+                onClick={() => setOpen(false)}
+                className="mt-4 text-sm font-semibold text-base bg-accent hover:bg-accent-light rounded-lg px-8 py-3.5 transition-all duration-300 glow-accent"
+                style={{ animation: `reveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both` }}
+              >
+                Portal
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                onClick={() => setOpen(false)}
+                className="mt-4 text-sm font-semibold text-base bg-accent hover:bg-accent-light rounded-lg px-8 py-3.5 transition-all duration-300 glow-accent"
+                style={{ animation: `reveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both` }}
+              >
+                Sign In
+              </Link>
+            )}
           </div>
         </div>
       )}

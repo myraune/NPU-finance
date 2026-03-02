@@ -39,6 +39,10 @@
   --color-cream:      #eaedf2;
   --color-cream-dark: #8a95a8;
   --color-muted:      #4a5568;
+
+  /* ── Admin Compatibility (brutalist class mapping) ── */
+  --color-border:  #1a2744;
+  --color-surface: #0f1629;
 }
 
 /* ═══════════════════════════════════════════════════
