@@ -5,7 +5,6 @@ import StockTicker from "@/components/StockTicker";
 import ScrollReveal from "@/components/ScrollReveal";
 import GradientOrb from "@/components/GradientOrb";
 import AnimatedCounter from "@/components/AnimatedCounter";
-import LinkedInFeed from "@/components/LinkedInFeed";
 
 export default function Home() {
   return (
@@ -60,7 +59,7 @@ export default function Home() {
         <div className="marquee flex whitespace-nowrap">
           {Array.from({ length: 2 }).map((_, i) => (
             <div key={i} className="flex items-center gap-10 mr-10 shrink-0">
-              {["Investment Workshops", "Stock Pitch Competitions", "Guest Speakers", "Career Development", "Financial Literacy", "Networking Events", "Alumni Panels", "Portfolio Analysis"].map((t) => (
+              {["Investment Workshops", "Financial Literacy", "Career Development", "Networking", "Stock Analysis", "Professional Growth", "Community", "Student-Led"].map((t) => (
                 <span key={t + i} className="flex items-center gap-10">
                   <span className="text-text-tertiary text-[11px] font-data tracking-[0.15em] uppercase">{t}</span>
                   <span className="w-1 h-1 rounded-full bg-accent/40" />
@@ -181,10 +180,10 @@ export default function Home() {
           </div>
         </ScrollReveal>
         {[
-          { num: "01", title: "Investment Workshops", desc: "Hands-on sessions covering stock analysis, portfolio construction, DCF modeling, and valuation fundamentals. Learn by doing." },
-          { num: "02", title: "Speaker Series", desc: "Industry professionals from JPMorgan, Goldman Sachs, and boutique firms share unfiltered career advice and market insights." },
-          { num: "03", title: "Competitions", desc: "Put your skills to the test in our semester stock pitch competitions. Present to judges. Win prizes. Build your resume." },
-          { num: "04", title: "Career Pipeline", desc: "Resume reviews, mock interviews, LinkedIn optimization, and direct introductions to recruiters and North Park alumni on Wall Street." },
+          { num: "01", title: "Investment Workshops", desc: "Hands-on sessions covering stock analysis, portfolio construction, and valuation fundamentals. Learn by doing." },
+          { num: "02", title: "Speaker Series", desc: "Industry professionals share career advice and market insights. Coming soon." },
+          { num: "03", title: "Competitions", desc: "Stock pitch competitions where you present to judges, win prizes, and build your resume. Coming soon." },
+          { num: "04", title: "Career Development", desc: "Resume reviews, mock interviews, LinkedIn optimization, and networking with finance professionals. Coming soon." },
         ].map((item, i) => (
           <ScrollReveal key={item.num} delay={i * 80}>
             <div className="group border-b border-white/[0.04] hover:bg-surface-1/50 transition-all duration-500 rounded-lg mx-2">
@@ -201,7 +200,7 @@ export default function Home() {
         ))}
       </section>
 
-      {/* ▌UPCOMING EVENT — large cinematic block */}
+      {/* ▌EVENTS — coming soon */}
       <ScrollReveal direction="none" className="relative h-[60vh] group overflow-hidden mx-3 md:mx-6 rounded-2xl my-3">
         <Image
           src={images.johnsonCenterDusk}
@@ -212,17 +211,16 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-base via-base/80 to-transparent" />
         <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24">
-          <p className="text-accent text-[11px] tracking-[0.15em] uppercase font-medium mb-4">Next Event</p>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.02em] mb-3">Spring Investment Workshop</h2>
-          <p className="text-text-secondary text-lg mb-2 font-data">March 15, 2026 · 5–7 PM · Anderson Hall 201</p>
-          <p className="text-text-tertiary max-w-lg mb-8">Learn the fundamentals of building a diversified portfolio. Open to all majors.</p>
-          <Link href="/events" className="text-[13px] font-semibold text-base bg-accent hover:bg-accent-light rounded-lg px-7 py-3.5 w-fit transition-all duration-300 glow-accent-hover">
-            View All Events
+          <p className="text-accent text-[11px] tracking-[0.15em] uppercase font-medium mb-4">Events</p>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.02em] mb-3">Coming Soon</h2>
+          <p className="text-text-tertiary max-w-lg mb-8">Workshops, competitions, panels, and more. Stay tuned for our upcoming events.</p>
+          <Link href="/contact" className="text-[13px] font-semibold text-base bg-accent hover:bg-accent-light rounded-lg px-7 py-3.5 w-fit transition-all duration-300 glow-accent-hover">
+            Get Notified
           </Link>
         </div>
       </ScrollReveal>
 
-      {/* ▌LINKEDIN — stay connected */}
+      {/* ▌LINKEDIN — coming soon */}
       <section className="bg-base py-20 md:py-28 px-6 overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal>
@@ -231,7 +229,7 @@ export default function Home() {
                 Stay Connected
               </p>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                Latest from LinkedIn
+                LinkedIn
               </h2>
               <p className="text-text-tertiary text-sm mt-3 max-w-md mx-auto">
                 Follow our journey, insights, and upcoming events.
@@ -239,7 +237,22 @@ export default function Home() {
             </div>
           </ScrollReveal>
           <ScrollReveal delay={100}>
-            <LinkedInFeed />
+            <div className="text-center">
+              <div className="inline-block glass rounded-xl px-8 py-6 mb-6">
+                <p className="text-text-tertiary text-sm mb-4">LinkedIn feed coming soon</p>
+                <a
+                  href="https://www.linkedin.com/company/npfis"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 text-sm font-semibold text-accent hover:text-accent-light transition-all duration-300"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                  </svg>
+                  Follow NPFIS on LinkedIn
+                </a>
+              </div>
+            </div>
           </ScrollReveal>
         </div>
       </section>

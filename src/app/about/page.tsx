@@ -137,24 +137,17 @@ export default function About() {
 
       {/* ---- NUMBERS ---- */}
       <section className="bg-surface-0">
-        <div className="grid grid-cols-2 md:grid-cols-4">
-          {[
-            { target: 50, suffix: "+", label: "Active Members" },
-            { target: 20, suffix: "+", label: "Events Per Year" },
-            { target: 12, suffix: "", label: "Industry Speakers" },
-            { target: 95, suffix: "%", label: "Member Satisfaction" },
-          ].map((s, i) => (
-            <ScrollReveal key={s.label} delay={i * 100}>
-              <div className="border border-white/[0.04] px-6 md:px-10 py-12 md:py-16 text-center">
-                <p className="text-4xl md:text-6xl font-bold text-accent tracking-tight">
-                  <AnimatedCounter target={s.target} suffix={s.suffix} />
-                </p>
-                <p className="text-[11px] tracking-[0.15em] uppercase font-medium text-text-tertiary mt-3">
-                  {s.label}
-                </p>
-              </div>
-            </ScrollReveal>
-          ))}
+        <div className="flex justify-center">
+          <ScrollReveal>
+            <div className="border border-white/[0.04] px-16 md:px-24 py-12 md:py-16 text-center">
+              <p className="text-4xl md:text-6xl font-bold text-accent tracking-tight">
+                <AnimatedCounter target={50} suffix="+" />
+              </p>
+              <p className="text-[11px] tracking-[0.15em] uppercase font-medium text-text-tertiary mt-3">
+                Active Members
+              </p>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
