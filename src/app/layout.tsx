@@ -26,13 +26,31 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
+const siteUrl = "https://www.financeinvestmentsociety.com";
+
 export const metadata: Metadata = {
   title: "NPFIS | North Park Finance & Investment Society",
   description:
     "North Park University's Finance and Investment Society — empowering students with financial literacy, investment knowledge, and professional development.",
+  metadataBase: new URL(siteUrl),
   icons: {
     icon: "/favicon.png",
     apple: "/apple-touch-icon.png",
+  },
+  openGraph: {
+    title: "NPFIS | North Park Finance & Investment Society",
+    description:
+      "Empowering students with financial literacy, investment knowledge, and professional development.",
+    url: siteUrl,
+    siteName: "NPFIS",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NPFIS | North Park Finance & Investment Society",
+    description:
+      "Empowering students with financial literacy, investment knowledge, and professional development.",
   },
 };
 
