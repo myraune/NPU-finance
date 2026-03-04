@@ -20,10 +20,18 @@ export default function Contact() {
         body: JSON.stringify(form),
       });
 
-      if (!res.ok) throw new Error("Failed to send");
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        const fieldErrors = data?.error?.fieldErrors;
+        if (fieldErrors) {
+          const msgs = Object.values(fieldErrors).flat().join(". ");
+          throw new Error(msgs || "Invalid input.");
+        }
+        throw new Error("Failed to send");
+      }
       setStatus("success");
-    } catch {
-      setError("Something went wrong. Try again.");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Try again.");
       setStatus("error");
     }
   }
