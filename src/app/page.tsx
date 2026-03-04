@@ -48,16 +48,6 @@ export default function Home() {
               <p className="text-accent text-2xl font-semibold font-data">50+</p>
               <p className="text-text-tertiary text-[10px] tracking-wider uppercase mt-1">Members</p>
             </div>
-            <div className="w-px bg-white/[0.06]" />
-            <div className="text-center">
-              <p className="text-accent text-2xl font-semibold font-data">20+</p>
-              <p className="text-text-tertiary text-[10px] tracking-wider uppercase mt-1">Events</p>
-            </div>
-            <div className="w-px bg-white/[0.06]" />
-            <div className="text-center">
-              <p className="text-accent text-2xl font-semibold font-data">RSO</p>
-              <p className="text-text-tertiary text-[10px] tracking-wider uppercase mt-1">Approved</p>
-            </div>
           </div>
         </div>
       </section>
@@ -126,22 +116,15 @@ export default function Home() {
       {/* ▌NUMBERS — glass cards */}
       <section className="bg-surface-0 py-16 md:py-24">
         <div className="max-w-5xl mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { target: 50, suffix: "+", label: "Active Members" },
-              { target: 20, suffix: "+", label: "Events Per Year" },
-              { target: 12, suffix: "", label: "Industry Speakers" },
-              { target: 95, suffix: "%", label: "Member Satisfaction" },
-            ].map((s, i) => (
-              <ScrollReveal key={s.label} delay={i * 100}>
-                <div className="rounded-xl bg-surface-1 border border-white/[0.06] px-6 py-10 md:py-14 text-center hover:border-accent/10 transition-all duration-500">
-                  <p className="text-4xl md:text-5xl font-medium text-accent tracking-tight">
-                    <AnimatedCounter target={s.target} suffix={s.suffix} />
-                  </p>
-                  <p className="text-text-tertiary text-[11px] tracking-[0.15em] uppercase mt-3">{s.label}</p>
-                </div>
-              </ScrollReveal>
-            ))}
+          <div className="flex justify-center">
+            <ScrollReveal>
+              <div className="rounded-xl bg-surface-1 border border-white/[0.06] px-12 py-10 md:py-14 text-center hover:border-accent/10 transition-all duration-500">
+                <p className="text-4xl md:text-5xl font-medium text-accent tracking-tight">
+                  <AnimatedCounter target={50} suffix="+" />
+                </p>
+                <p className="text-text-tertiary text-[11px] tracking-[0.15em] uppercase mt-3">Active Members</p>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
