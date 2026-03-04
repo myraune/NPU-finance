@@ -1,13 +1,20 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { contactSchema } from "@/lib/validations";
-import { Resend } from "resend";
-
-const resend = process.env.RESEND_API_KEY
-  ? new Resend(process.env.RESEND_API_KEY)
-  : null;
+import nodemailer from "nodemailer";
 
 const NOTIFY_EMAIL = process.env.CONTACT_NOTIFY_EMAIL || "npfis@northpark.edu";
+
+function getTransporter() {
+  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) return null;
+  return nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
+}
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -24,11 +31,12 @@ export async function POST(request: Request) {
   });
 
   // Send email notification
-  if (resend) {
+  const transporter = getTransporter();
+  if (transporter) {
     try {
-      await resend.emails.send({
-        from: "NPFIS Contact Form <noreply@financeinvestmentsociety.com>",
-        to: [NOTIFY_EMAIL],
+      await transporter.sendMail({
+        from: `"NPFIS Contact Form" <${process.env.SMTP_USER}>`,
+        to: NOTIFY_EMAIL,
         subject: `[NPFIS] ${subject} — from ${name}`,
         text: [
           `New contact form submission:`,
@@ -45,7 +53,6 @@ export async function POST(request: Request) {
         ].join("\n"),
       });
     } catch (emailError) {
-      // Log but don't fail the request if email fails
       console.error("Failed to send notification email:", emailError);
     }
   }
