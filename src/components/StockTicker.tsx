@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 interface Quote {
   symbol: string;
@@ -10,51 +10,42 @@ interface Quote {
   up: boolean;
 }
 
-const SYMBOLS = ["SPY", "DIA", "QQQ", "AAPL", "MSFT", "JPM", "GS", "BRK-B", "AMZN", "NVDA"];
+const FUN_FACTS: Record<string, string> = {
+  "SPY": "Chicago's CME Group is the world's largest derivatives exchange, handling 3 billion contracts/year.",
+  "S&P 500": "Chicago's CME Group is the world's largest derivatives exchange, handling 3 billion contracts/year.",
+  "DIA": "The Chicago Board of Trade, founded in 1848, is one of the oldest futures exchanges in the world.",
+  "DJIA": "The Chicago Board of Trade, founded in 1848, is one of the oldest futures exchanges in the world.",
+  "QQQ": "Chicago is home to Citadel, one of the most powerful hedge funds and market makers globally.",
+  "NASDAQ": "Chicago is home to Citadel, one of the most powerful hedge funds and market makers globally.",
+  "AAPL": "North Park University is just 8 miles from Chicago's financial district on LaSalle Street.",
+  "MSFT": "Chicago's fintech scene is booming — the city ranks #3 in the US for financial technology jobs.",
+  "JPM": "JPMorgan Chase has a major presence in Chicago, with offices in the iconic Chase Tower on Madison St.",
+  "GS": "Chicago's LaSalle Street has been the heart of Midwest finance since the 1800s.",
+  "BRK-B": "Warren Buffett started his career in Omaha, just a short drive from Chicago's trading floors.",
+  "BRK.B": "Warren Buffett started his career in Omaha, just a short drive from Chicago's trading floors.",
+  "AMZN": "Illinois is the #1 state for corporate relocations, with Chicago attracting major HQs like Boeing and Citadel.",
+  "NVDA": "The University of Chicago produced 33 Nobel laureates in Economics — more than any other institution.",
+};
 
 export default function StockTicker() {
   const [quotes, setQuotes] = useState<Quote[]>([]);
+  const [stale, setStale] = useState(false);
+  const [activeFact, setActiveFact] = useState<string | null>(null);
+  const factTimer = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     async function fetchQuotes() {
       try {
-        const results: Quote[] = [];
-        const resp = await fetch(
-          `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${SYMBOLS.join(",")}&fields=regularMarketPrice,regularMarketChange,regularMarketChangePercent,symbol`,
-          { next: { revalidate: 60 } }
-        );
-        if (resp.ok) {
-          const data = await resp.json();
-          for (const q of data?.quoteResponse?.result || []) {
-            results.push({
-              symbol: q.symbol,
-              price: q.regularMarketPrice?.toFixed(2) ?? "—",
-              change: (q.regularMarketChange >= 0 ? "+" : "") + q.regularMarketChange?.toFixed(2),
-              pct: (q.regularMarketChange >= 0 ? "+" : "") + q.regularMarketChangePercent?.toFixed(2) + "%",
-              up: q.regularMarketChange >= 0,
-            });
-          }
-        }
-        if (results.length > 0) {
-          setQuotes(results);
-          return;
+        const resp = await fetch("/api/stocks");
+        if (!resp.ok) return;
+        const data = await resp.json();
+        if (data.quotes?.length > 0) {
+          setQuotes(data.quotes);
+          setStale(!!data.stale);
         }
       } catch {
-        // API blocked by CORS — use simulated data
+        // Network error — keep existing quotes
       }
-
-      setQuotes([
-        { symbol: "S&P 500", price: "5,892.41", change: "+23.67", pct: "+0.40%", up: true },
-        { symbol: "DJIA", price: "43,461.21", change: "+118.33", pct: "+0.27%", up: true },
-        { symbol: "NASDAQ", price: "18,924.55", change: "-42.11", pct: "-0.22%", up: false },
-        { symbol: "AAPL", price: "237.49", change: "+1.82", pct: "+0.77%", up: true },
-        { symbol: "MSFT", price: "422.86", change: "+3.15", pct: "+0.75%", up: true },
-        { symbol: "JPM", price: "248.72", change: "-0.93", pct: "-0.37%", up: false },
-        { symbol: "GS", price: "592.18", change: "+4.21", pct: "+0.72%", up: true },
-        { symbol: "AMZN", price: "218.34", change: "+2.56", pct: "+1.19%", up: true },
-        { symbol: "NVDA", price: "137.71", change: "+5.43", pct: "+4.10%", up: true },
-        { symbol: "BRK.B", price: "473.56", change: "-1.12", pct: "-0.24%", up: false },
-      ]);
     }
 
     fetchQuotes();
@@ -62,18 +53,31 @@ export default function StockTicker() {
     return () => clearInterval(interval);
   }, []);
 
+  function handleSymbolClick(symbol: string) {
+    const fact = FUN_FACTS[symbol];
+    if (!fact) return;
+    if (factTimer.current) clearTimeout(factTimer.current);
+    setActiveFact(activeFact === fact ? null : fact);
+    factTimer.current = setTimeout(() => setActiveFact(null), 5000);
+  }
+
   if (quotes.length === 0) return null;
 
   return (
     <div className="relative bg-surface-0/90 backdrop-blur-sm border-t border-accent/10 overflow-hidden no-scrollbar">
       <div className="flex items-center">
-        {/* LIVE indicator */}
-        <div className="shrink-0 flex items-center gap-2 px-5 py-3.5 border-r border-white/[0.04]">
+        {/* Status indicator */}
+        <div className="shrink-0 flex items-center gap-2 px-5 py-3.5 border-r border-border-subtle">
           <span className="relative flex h-2 w-2">
-            <span className="absolute inset-0 rounded-full bg-positive opacity-75" style={{ animation: "pulse-live 2s ease-in-out infinite" }} />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-positive" />
+            <span
+              className={`absolute inset-0 rounded-full opacity-75 ${stale ? "bg-amber-400" : "bg-positive"}`}
+              style={{ animation: "pulse-live 2s ease-in-out infinite" }}
+            />
+            <span className={`relative inline-flex rounded-full h-2 w-2 ${stale ? "bg-amber-400" : "bg-positive"}`} />
           </span>
-          <span className="text-positive text-[10px] font-data font-medium tracking-wider uppercase">Live</span>
+          <span className={`text-[10px] font-data font-medium tracking-wider uppercase ${stale ? "text-amber-400" : "text-positive"}`}>
+            {stale ? "Delayed" : "Live"}
+          </span>
         </div>
 
         {/* Ticker tape */}
@@ -84,7 +88,8 @@ export default function StockTicker() {
                 {quotes.map((q) => (
                   <span
                     key={q.symbol + dup}
-                    className={`flex items-center gap-2.5 px-5 border-r border-white/[0.03] ${
+                    onClick={() => handleSymbolClick(q.symbol)}
+                    className={`flex items-center gap-2.5 px-5 border-r border-white/[0.03] cursor-pointer hover:bg-border-subtle/50 transition-colors duration-200 ${
                       q.up ? "border-l-2 border-l-positive/30" : "border-l-2 border-l-negative/30"
                     }`}
                   >
@@ -109,6 +114,18 @@ export default function StockTicker() {
           </div>
         </div>
       </div>
+
+      {/* Fun fact tooltip */}
+      {activeFact && (
+        <div
+          className="absolute bottom-full left-1/2 mb-2 z-50"
+          style={{ animation: "toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards" }}
+        >
+          <div className="glass-accent rounded-lg px-4 py-2.5 max-w-sm text-center">
+            <p className="text-accent text-[11px] font-medium leading-relaxed">{activeFact}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
