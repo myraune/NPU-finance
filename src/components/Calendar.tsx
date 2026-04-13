@@ -97,7 +97,7 @@ export default function Calendar({
       </div>
 
       {/* Weekday headers */}
-      <div className="grid grid-cols-7 border-b border-white/[0.06] mb-1">
+      <div className="grid grid-cols-7 border-b border-border-subtle mb-1">
         {WEEKDAYS.map((day) => (
           <div
             key={day}
@@ -149,7 +149,7 @@ export default function Calendar({
                         ${evt.status === "CANCELLED"
                           ? "bg-negative/10 text-negative/70 line-through"
                           : evt.status === "PAST"
-                            ? "bg-white/[0.04] text-text-tertiary"
+                            ? "bg-border-subtle text-text-tertiary"
                             : "bg-accent/10 text-accent"
                         }
                       `}

@@ -140,7 +140,7 @@ export default function EventCalendar() {
                             return (
                               <div
                                 key={evt.id}
-                                className="border border-white/[0.06] rounded-xl p-4 bg-surface-0/50"
+                                className="border border-border-subtle rounded-xl p-4 bg-surface-0/50"
                               >
                                 {/* Status tag */}
                                 {evt.status === "CANCELLED" && (
@@ -202,14 +202,14 @@ export default function EventCalendar() {
                                     </button>
                                   )}
                                   {evt.status === "UPCOMING" && isFull && (
-                                    <span className="px-4 py-1.5 bg-white/[0.04] text-text-muted text-xs font-semibold rounded-lg">
+                                    <span className="px-4 py-1.5 bg-border-subtle text-text-muted text-xs font-semibold rounded-lg">
                                       Full
                                     </span>
                                   )}
                                   {regCount > 0 && (
                                     <button
                                       onClick={() => toggleAttendees(evt.id)}
-                                      className="px-3 py-1.5 border border-white/[0.08] text-text-secondary text-xs rounded-lg hover:border-accent/30 hover:text-accent transition-all duration-200"
+                                      className="px-3 py-1.5 border border-border-medium text-text-secondary text-xs rounded-lg hover:border-accent/30 hover:text-accent transition-all duration-200"
                                     >
                                       {isExpanded ? "Hide" : "Attendees"}
                                     </button>
@@ -218,7 +218,7 @@ export default function EventCalendar() {
 
                                 {/* Attendees list */}
                                 {isExpanded && (
-                                  <div className="mt-3 pt-3 border-t border-white/[0.06]">
+                                  <div className="mt-3 pt-3 border-t border-border-subtle">
                                     {!eventAttendees ? (
                                       <p className="text-text-muted text-[10px]">Loading...</p>
                                     ) : eventAttendees.length === 0 ? (
@@ -306,7 +306,7 @@ export default function EventCalendar() {
                   setSelectedDate(d);
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
-                className="w-full flex items-center justify-between py-3 border-b border-white/[0.04] hover:bg-white/[0.02] px-2 rounded transition-all text-left"
+                className="w-full flex items-center justify-between py-3 border-b border-border-subtle hover:bg-border-subtle/50 px-2 rounded transition-all text-left"
               >
                 <div>
                   <p className="text-sm font-medium text-text-primary">{evt.title}</p>

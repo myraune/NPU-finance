@@ -4,6 +4,7 @@
  * All other Google sign-ins become MEMBER role with access to the member portal.
  */
 export const FOUNDERS: { email: string; name: string }[] = [
+  { email: "thabetler@northpark.edu", name: "Tyler Habetler" },
   { email: "temirlan@northpark.edu", name: "Temirlan Avtandilov" },
   { email: "shamri@northpark.edu", name: "Mohamed Zarook Mohamed Shamri" },
 ];

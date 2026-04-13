@@ -21,7 +21,7 @@ export default function CampusMap() {
       {buildings.map((b) => (
         <div
           key={b.id}
-          className="group rounded-xl bg-surface-0 border border-white/[0.06] p-6 hover:border-accent/20 hover:bg-surface-1 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20"
+          className="group rounded-xl bg-surface-0 border border-border-subtle p-6 hover:border-accent/20 hover:bg-surface-1 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20"
         >
           {/* Icon + name */}
           <div className="flex items-start gap-3 mb-3">

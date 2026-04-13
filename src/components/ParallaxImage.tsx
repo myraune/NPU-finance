@@ -43,7 +43,7 @@ export default function ParallaxImage({
         role="img"
         aria-label={alt}
       />
-      {overlay && <div className="absolute inset-0 bg-navy-dark/50" />}
+      {overlay && <div className="absolute inset-0 bg-base/50" />}
     </div>
   );
 }

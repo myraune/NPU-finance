@@ -31,7 +31,7 @@ export default function LinkedInFeed() {
     return (
       <div className="text-center">
         <a
-          href="https://www.linkedin.com/company/npfis"
+          href="https://www.linkedin.com/company/north-park-university-finance-and-investment-society"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-3 glass-accent text-sm font-semibold text-accent hover:text-accent-light px-8 py-4 rounded-lg glow-accent-hover transition-all duration-300"

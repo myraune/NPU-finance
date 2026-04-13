@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { images } from "@/lib/images";
-import CampusMap from "@/components/CampusMap";
 import ScrollReveal from "@/components/ScrollReveal";
 import GradientOrb from "@/components/GradientOrb";
 import RegistrationModal from "@/components/RegistrationModal";
@@ -44,7 +43,6 @@ export default function Events() {
   }, []);
 
   const upcoming = events.filter((e) => e.status === "UPCOMING");
-  const past = events.filter((e) => e.status === "PAST");
 
   return (
     <>
@@ -174,69 +172,6 @@ export default function Events() {
         )}
       </section>
 
-      {/* ---- CAMPUS MAP ---- */}
-      <section className="bg-surface-0">
-        <div className="px-6 md:px-12 py-12 md:py-16">
-          <ScrollReveal>
-            <p className="text-[11px] tracking-[0.15em] uppercase font-medium text-accent mb-2">
-              Where It Happens
-            </p>
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-2">
-              Campus Locations
-            </h2>
-            <p className="text-text-tertiary text-sm">
-              Key buildings where NPFIS events take place.
-            </p>
-          </ScrollReveal>
-        </div>
-        <ScrollReveal>
-          <CampusMap />
-        </ScrollReveal>
-      </section>
-
-      {/* ---- PAST EVENTS ---- */}
-      {past.length > 0 && (
-        <section className="bg-surface-1">
-          <div className="px-6 md:px-12 py-20 md:py-24">
-            <ScrollReveal>
-              <p className="text-[11px] tracking-[0.15em] uppercase font-medium text-accent mb-2">
-                Archive
-              </p>
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-10">
-                Past Events
-              </h2>
-            </ScrollReveal>
-
-            {past.map((e, i) => (
-              <ScrollReveal key={e.id} delay={i * 60}>
-                <div className="group flex items-center justify-between py-4 border-b border-white/[0.04] hover:bg-surface-1 rounded-lg px-4 transition-all duration-300 cursor-pointer">
-                  <span className="text-text-primary/80 font-medium group-hover:text-text-primary transition-colors duration-300">
-                    {e.title}
-                  </span>
-                  <div className="flex items-center gap-3">
-                    <span className="text-text-tertiary text-sm font-data">
-                      {e.date}
-                    </span>
-                    <svg
-                      className="w-4 h-4 text-text-muted group-hover:text-accent group-hover:translate-x-1 transition-all duration-300"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </section>
-      )}
 
       {/* ---- CTA ---- */}
       <section className="relative bg-base py-28 md:py-40 text-center px-6 overflow-hidden">

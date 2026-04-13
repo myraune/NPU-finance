@@ -21,8 +21,8 @@ export default function TeamCard({ member, variant = "board" }: { member: Member
     <div
       onClick={() => setExpanded(!expanded)}
       className={`relative cursor-pointer overflow-hidden rounded-xl border transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
-        bg-surface-0 border-white/[0.06]
-        ${expanded ? "bg-surface-1 border-accent/20 shadow-xl shadow-black/20" : "hover:bg-surface-1 hover:border-white/[0.1] hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20"}
+        bg-surface-0 border-border-subtle
+        ${expanded ? "bg-surface-1 border-accent/20 shadow-xl shadow-black/20" : "hover:bg-surface-1 hover:border-border-medium hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20"}
       `}
     >
       {/* Main content */}
@@ -50,7 +50,7 @@ export default function TeamCard({ member, variant = "board" }: { member: Member
           className="overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
           style={{ maxHeight: expanded ? "250px" : "0", opacity: expanded ? 1 : 0, marginTop: expanded ? "16px" : "0" }}
         >
-          <div className="rounded-lg bg-surface-1/50 backdrop-blur-sm p-4 border border-white/[0.04]">
+          <div className="rounded-lg bg-surface-1/50 backdrop-blur-sm p-4 border border-border-subtle">
             <p className="text-text-secondary text-sm leading-relaxed mb-4">{member.bio}</p>
             {member.linkedin && member.linkedin !== "#" && (
               <a

@@ -75,12 +75,12 @@ export default function ProfilePage() {
   }
 
   const inputClass =
-    "w-full bg-surface-1 border border-white/[0.06] rounded-lg px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted/40 focus:border-accent/40 focus:outline-none transition-colors";
+    "w-full bg-surface-1 border border-border-subtle rounded-lg px-4 py-2.5 text-sm text-text-primary placeholder:text-text-muted/40 focus:border-accent/40 focus:outline-none transition-colors";
 
   return (
     <div className="min-h-screen bg-base pt-24">
       {/* Header */}
-      <div className="border-b border-white/[0.06] bg-surface-0/50 backdrop-blur-md">
+      <div className="border-b border-border-subtle bg-surface-0/50 backdrop-blur-md">
         <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link href="/portal" className="flex items-center">
@@ -194,7 +194,7 @@ export default function ProfilePage() {
                   <img
                     src={form.imageUrl}
                     alt="Preview"
-                    className="w-16 h-16 rounded-full object-cover border border-white/[0.06]"
+                    className="w-16 h-16 rounded-full object-cover border border-border-subtle"
                     onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                   />
                 </div>

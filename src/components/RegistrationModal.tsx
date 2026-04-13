@@ -38,12 +38,12 @@ export default function RegistrationModal({ eventId, eventTitle, onClose }: Prop
   }
 
   const inputClass =
-    "w-full bg-surface-1 border border-white/[0.06] px-4 py-3 rounded-lg text-text-primary placeholder:text-text-muted focus:border-accent focus:ring-1 focus:ring-accent/20 outline-none transition-all duration-300 text-[15px]";
+    "w-full bg-surface-1 border border-border-subtle px-4 py-3 rounded-lg text-text-primary placeholder:text-text-muted focus:border-accent focus:ring-1 focus:ring-accent/20 outline-none transition-all duration-300 text-[15px]";
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-base/80 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative bg-surface-0 border border-white/[0.06] rounded-2xl w-full max-w-md p-8">
+      <div className="relative bg-surface-0 border border-border-subtle rounded-2xl w-full max-w-md p-8">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-text-tertiary hover:text-text-primary transition-colors duration-300"

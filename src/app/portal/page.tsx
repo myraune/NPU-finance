@@ -54,7 +54,7 @@ export default function MemberPortal() {
   return (
     <div className="min-h-screen bg-base pt-24">
       {/* Header */}
-      <div className="border-b border-white/[0.06] bg-surface-0/50 backdrop-blur-md">
+      <div className="border-b border-border-subtle bg-surface-0/50 backdrop-blur-md">
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link href="/" className="flex items-center">
@@ -113,7 +113,7 @@ export default function MemberPortal() {
                   My Events
                 </h2>
                 {myUpcoming.length === 0 ? (
-                  <div className="border border-white/[0.06] rounded-xl p-8 text-center">
+                  <div className="border border-border-subtle rounded-xl p-8 text-center">
                     <p className="text-text-muted text-sm mb-3">
                       You haven&apos;t registered for any upcoming events yet.
                     </p>
@@ -129,7 +129,7 @@ export default function MemberPortal() {
                     {myUpcoming.map((evt) => (
                       <div
                         key={evt.id}
-                        className="border border-white/[0.06] rounded-xl p-5 hover:border-accent/20 transition-all duration-300"
+                        className="border border-border-subtle rounded-xl p-5 hover:border-accent/20 transition-all duration-300"
                       >
                         <div className="flex items-start justify-between">
                           <div>
@@ -173,7 +173,7 @@ export default function MemberPortal() {
                       return (
                         <div
                           key={evt.id}
-                          className="border border-white/[0.06] rounded-xl p-5 hover:border-white/[0.1] transition-all duration-300"
+                          className="border border-border-subtle rounded-xl p-5 hover:border-border-medium transition-all duration-300"
                         >
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
@@ -230,7 +230,7 @@ export default function MemberPortal() {
             {/* Sidebar */}
             <div className="space-y-6">
               {/* Quick Stats */}
-              <div className="border border-white/[0.06] rounded-xl p-5">
+              <div className="border border-border-subtle rounded-xl p-5">
                 <h3 className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-medium mb-4">
                   Your Activity
                 </h3>
@@ -255,7 +255,7 @@ export default function MemberPortal() {
               </div>
 
               {/* Member since */}
-              <div className="border border-white/[0.06] rounded-xl p-5">
+              <div className="border border-border-subtle rounded-xl p-5">
                 <h3 className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-medium mb-3">
                   Membership
                 </h3>
@@ -268,7 +268,7 @@ export default function MemberPortal() {
               </div>
 
               {/* Quick Links */}
-              <div className="border border-white/[0.06] rounded-xl p-5">
+              <div className="border border-border-subtle rounded-xl p-5">
                 <h3 className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-medium mb-4">
                   Quick Links
                 </h3>

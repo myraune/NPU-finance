@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import NoiseOverlay from "@/components/NoiseOverlay";
 import Providers from "@/components/Providers";
+import KonamiCode from "@/components/KonamiCode";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -60,13 +61,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem('npfis-theme');if(s==='light'||s==='dark'){document.documentElement.setAttribute('data-theme',s)}else if(window.matchMedia('(prefers-color-scheme:light)').matches){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} min-h-screen bg-base text-text-primary`}>
         <Providers>
           <Navbar />
           <main>{children}</main>
           <Footer />
           <NoiseOverlay />
+          <KonamiCode />
         </Providers>
       </body>
     </html>

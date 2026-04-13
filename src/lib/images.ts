@@ -6,7 +6,7 @@ export const images = {
 
   // Old Main building (historic brick with cupola)
   oldMain:
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Old_Main_NPU.jpg/1280px-Old_Main_NPU.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Old_Main_NPU.jpg/1280px-Old_Main_NPU.jpg",
 
   // Johnson Center exterior (modern science building)
   johnsonCenter:

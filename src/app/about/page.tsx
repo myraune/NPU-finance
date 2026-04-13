@@ -118,7 +118,7 @@ export default function About() {
           },
         ].map((v, i) => (
           <ScrollReveal key={v.title} delay={i * 80}>
-            <div className="group border-b border-white/[0.04] hover:bg-surface-1/50 transition-all duration-500 rounded-xl mx-2 md:mx-4">
+            <div className="group border-b border-border-subtle hover:bg-surface-1/50 transition-all duration-500 rounded-xl mx-2 md:mx-4">
               <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-16 px-6 md:px-12 py-10 md:py-14">
                 <span className="font-data text-accent/30 text-xs tracking-widest">
                   0{v.num}
@@ -139,7 +139,7 @@ export default function About() {
       <section className="bg-surface-0">
         <div className="flex justify-center">
           <ScrollReveal>
-            <div className="border border-white/[0.04] px-16 md:px-24 py-12 md:py-16 text-center">
+            <div className="border border-border-subtle px-16 md:px-24 py-12 md:py-16 text-center">
               <p className="text-4xl md:text-6xl font-bold text-accent tracking-tight">
                 <AnimatedCounter target={50} suffix="+" />
               </p>
@@ -198,9 +198,12 @@ export default function About() {
           <ScrollReveal delay={300}>
             <Link
               href="/contact"
-              className="inline-block text-sm font-semibold text-base bg-accent hover:bg-accent-light px-8 py-4 rounded-lg glow-accent-hover transition-all duration-300"
+              className="group relative overflow-hidden inline-flex items-center gap-2 text-sm font-semibold text-base bg-accent hover:bg-accent-light px-8 py-4 rounded-lg glow-accent-hover transition-all duration-300 hover:scale-[1.02] btn-shimmer"
             >
               Join NPFIS
+              <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
             </Link>
           </ScrollReveal>
         </div>

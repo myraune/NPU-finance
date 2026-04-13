@@ -2,9 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { images } from "@/lib/images";
 import StockTicker from "@/components/StockTicker";
+import InvestmentCalculator from "@/components/InvestmentCalculator";
 import ScrollReveal from "@/components/ScrollReveal";
 import GradientOrb from "@/components/GradientOrb";
 import AnimatedCounter from "@/components/AnimatedCounter";
+import BeamCTA from "@/components/BeamCTA";
 
 export default function Home() {
   return (
@@ -28,8 +30,11 @@ export default function Home() {
             Finance &amp;<br />Investment<br />Society
           </h1>
           <div className="reveal reveal-d2 flex items-center gap-5 mt-10">
-            <Link href="/contact" className="text-[13px] font-semibold text-base bg-accent hover:bg-accent-light rounded-lg px-7 py-3.5 transition-all duration-300 glow-accent-hover">
+            <Link href="/contact" className="group relative overflow-hidden inline-flex items-center gap-2 text-[13px] font-semibold text-base bg-accent hover:bg-accent-light rounded-lg px-7 py-3.5 transition-all duration-300 glow-accent-hover hover:scale-[1.02] btn-shimmer">
               Become a Member
+              <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
             </Link>
             <Link href="/about" className="text-[13px] text-text-secondary hover:text-text-primary transition-all duration-300 group flex items-center gap-2">
               Learn more
@@ -39,36 +44,12 @@ export default function Home() {
             </Link>
           </div>
         </div>
-
-        {/* Floating glass stats card */}
-        <div className="reveal reveal-d3 absolute bottom-8 right-6 md:right-12 z-20 hidden md:block">
-          <div className="glass-accent rounded-xl px-6 py-5 flex gap-8">
-            <div className="text-center">
-              <p className="text-accent text-2xl font-semibold font-data">50+</p>
-              <p className="text-text-tertiary text-[10px] tracking-wider uppercase mt-1">Members</p>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* ▌LIVE STOCK TICKER */}
       <StockTicker />
 
-      {/* ▌MARQUEE — scrolling text banner */}
-      <section className="bg-surface-0 border-y border-white/[0.04] py-5 overflow-hidden no-scrollbar">
-        <div className="marquee flex whitespace-nowrap">
-          {Array.from({ length: 2 }).map((_, i) => (
-            <div key={i} className="flex items-center gap-10 mr-10 shrink-0">
-              {["Investment Workshops", "Financial Literacy", "Career Development", "Networking", "Stock Analysis", "Professional Growth", "Community", "Student-Led"].map((t) => (
-                <span key={t + i} className="flex items-center gap-10">
-                  <span className="text-text-tertiary text-[11px] font-data tracking-[0.15em] uppercase">{t}</span>
-                  <span className="w-1 h-1 rounded-full bg-accent/40" />
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </section>
+      <div className="hr-gold" />
 
       {/* ▌ABOUT SPLIT — asymmetric */}
       <section className="grid md:grid-cols-[1.3fr_1fr] min-h-screen">
@@ -112,23 +93,45 @@ export default function Home() {
         </ScrollReveal>
       </section>
 
-      {/* ▌NUMBERS — glass cards */}
-      <section className="bg-surface-0 py-16 md:py-24">
-        <div className="max-w-5xl mx-auto px-6 md:px-12">
-          <div className="flex justify-center">
-            <ScrollReveal>
-              <div className="rounded-xl bg-surface-1 border border-white/[0.06] px-12 py-10 md:py-14 text-center hover:border-accent/10 transition-all duration-500">
-                <p className="text-4xl md:text-5xl font-medium text-accent tracking-tight">
+      <div className="hr-gold" />
+
+      {/* ▌WHAT WE DO — stacked rows with stat badges */}
+      <section className="bg-base py-8">
+        <ScrollReveal>
+          <div className="px-6 md:px-12 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <p className="text-accent text-[11px] tracking-[0.15em] uppercase font-medium">What We Do</p>
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2.5 glass-accent rounded-lg px-4 py-2.5">
+                <p className="text-accent text-lg font-semibold font-data">
                   <AnimatedCounter target={50} suffix="+" />
                 </p>
-                <p className="text-text-tertiary text-[11px] tracking-[0.15em] uppercase mt-3">Active Members</p>
+                <p className="text-text-tertiary text-[10px] tracking-wider uppercase">Members</p>
               </div>
-            </ScrollReveal>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
+        {[
+          { num: "01", title: "Investment Workshops", desc: "Hands-on sessions covering stock analysis, portfolio construction, and valuation fundamentals. Learn by doing." },
+          { num: "02", title: "Speaker Series", desc: "Industry professionals share career advice and market insights. Coming soon." },
+          { num: "03", title: "Competitions", desc: "Stock pitch competitions where you present to judges, win prizes, and build your resume. Coming soon." },
+          { num: "04", title: "Career Development", desc: "Resume reviews, mock interviews, LinkedIn optimization, and networking with finance professionals. Coming soon." },
+        ].map((item, i) => (
+          <ScrollReveal key={item.num} delay={i * 80}>
+            <div className="group border-b border-border-subtle hover:bg-surface-1/50 transition-all duration-500 rounded-lg mx-2">
+              <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-16 px-6 md:px-12 py-10 md:py-14">
+                <span className="font-data text-accent-dim text-xs tracking-widest">{item.num}</span>
+                <h3 className="text-xl md:text-2xl font-semibold text-text-primary tracking-tight md:w-72 shrink-0 group-hover:text-accent transition-colors duration-500">{item.title}</h3>
+                <p className="text-text-tertiary text-[15px] leading-relaxed flex-1 max-w-xl group-hover:text-text-secondary transition-colors duration-500">{item.desc}</p>
+                <svg className="w-5 h-5 text-text-muted group-hover:text-accent shrink-0 transform -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
       </section>
 
-      {/* ▌CAMPUS GALLERY — full width asymmetric with rounded images */}
+      {/* ▌CAMPUS GALLERY — full width asymmetric */}
       <section className="px-3 md:px-6 py-3">
         <div className="grid md:grid-cols-12 gap-3 h-[70vh]">
           <ScrollReveal direction="right" className="md:col-span-7 relative group overflow-hidden rounded-2xl">
@@ -172,35 +175,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ▌WHAT WE DO — stacked rows with hover glow */}
-      <section className="bg-base py-8">
-        <ScrollReveal>
-          <div className="px-6 md:px-12 py-8">
-            <p className="text-accent text-[11px] tracking-[0.15em] uppercase font-medium">What We Do</p>
-          </div>
-        </ScrollReveal>
-        {[
-          { num: "01", title: "Investment Workshops", desc: "Hands-on sessions covering stock analysis, portfolio construction, and valuation fundamentals. Learn by doing." },
-          { num: "02", title: "Speaker Series", desc: "Industry professionals share career advice and market insights. Coming soon." },
-          { num: "03", title: "Competitions", desc: "Stock pitch competitions where you present to judges, win prizes, and build your resume. Coming soon." },
-          { num: "04", title: "Career Development", desc: "Resume reviews, mock interviews, LinkedIn optimization, and networking with finance professionals. Coming soon." },
-        ].map((item, i) => (
-          <ScrollReveal key={item.num} delay={i * 80}>
-            <div className="group border-b border-white/[0.04] hover:bg-surface-1/50 transition-all duration-500 rounded-lg mx-2">
-              <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-16 px-6 md:px-12 py-10 md:py-14">
-                <span className="font-data text-accent-dim text-xs tracking-widest">{item.num}</span>
-                <h3 className="text-xl md:text-2xl font-semibold text-text-primary tracking-tight md:w-72 shrink-0 group-hover:text-accent transition-colors duration-500">{item.title}</h3>
-                <p className="text-text-tertiary text-[15px] leading-relaxed flex-1 max-w-xl group-hover:text-text-secondary transition-colors duration-500">{item.desc}</p>
-                <svg className="w-5 h-5 text-text-muted group-hover:text-accent shrink-0 transform -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                </svg>
-              </div>
-            </div>
-          </ScrollReveal>
-        ))}
-      </section>
+      <div className="hr-gold" />
 
-      {/* ▌EVENTS — coming soon */}
+      {/* ▌CALCULATOR — S&P 500 investment estimator */}
+      <InvestmentCalculator />
+
+      <div className="hr-gold" />
+
+      {/* ▌UPCOMING EVENT */}
       <ScrollReveal direction="none" className="relative h-[60vh] group overflow-hidden mx-3 md:mx-6 rounded-2xl my-3">
         <Image
           src={images.johnsonCenterDusk}
@@ -211,75 +193,23 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-base via-base/80 to-transparent" />
         <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24">
-          <p className="text-accent text-[11px] tracking-[0.15em] uppercase font-medium mb-4">Events</p>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.02em] mb-3">Coming Soon</h2>
-          <p className="text-text-tertiary max-w-lg mb-8">Workshops, competitions, panels, and more. Stay tuned for our upcoming events.</p>
-          <Link href="/contact" className="text-[13px] font-semibold text-base bg-accent hover:bg-accent-light rounded-lg px-7 py-3.5 w-fit transition-all duration-300 glow-accent-hover">
-            Get Notified
+          <p className="text-accent text-[11px] tracking-[0.15em] uppercase font-medium mb-4">Upcoming Event — April 15</p>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.02em] mb-3 max-w-2xl">Angel Escobedo &amp; Navigating Early Career Success in Finance</h2>
+          <p className="text-text-tertiary max-w-lg mb-3">12:00–2:00 PM &middot; Magnuson Campus Center, Room 4</p>
+          <p className="text-text-secondary max-w-lg mb-8 text-sm leading-relaxed">Guest speaker with experience at JP Morgan, Morgan Stanley, PwC, and more. Snacks and beverages provided!</p>
+          <Link href="/events" className="group relative overflow-hidden inline-flex items-center gap-2 text-[13px] font-semibold text-base bg-accent hover:bg-accent-light rounded-lg px-7 py-3.5 w-fit transition-all duration-300 glow-accent-hover hover:scale-[1.02] btn-shimmer">
+            View Event &amp; Register
+            <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            </svg>
           </Link>
         </div>
       </ScrollReveal>
 
-      {/* ▌LINKEDIN — coming soon */}
-      <section className="bg-base py-20 md:py-28 px-6 overflow-hidden">
-        <div className="max-w-6xl mx-auto">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <p className="text-[11px] tracking-[0.15em] uppercase font-medium text-accent mb-2">
-                Stay Connected
-              </p>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                LinkedIn
-              </h2>
-              <p className="text-text-tertiary text-sm mt-3 max-w-md mx-auto">
-                Follow our journey, insights, and upcoming events.
-              </p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <div className="text-center">
-              <div className="inline-block glass rounded-xl px-8 py-6 mb-6">
-                <p className="text-text-tertiary text-sm mb-4">LinkedIn feed coming soon</p>
-                <a
-                  href="https://www.linkedin.com/company/npfis"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 text-sm font-semibold text-accent hover:text-accent-light transition-all duration-300"
-                >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                  </svg>
-                  Follow NPFIS on LinkedIn
-                </a>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+      <div className="hr-gold" />
 
-      {/* ▌CTA — full width with orbs */}
-      <section className="relative bg-surface-0 py-32 md:py-44 text-center px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-grid" />
-        <GradientOrb />
-        <div className="relative z-10">
-          <ScrollReveal>
-            <p className="text-accent text-[11px] tracking-[0.2em] uppercase font-medium mb-6">Ready?</p>
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-[-0.03em] mb-6 max-w-3xl mx-auto leading-tight">
-              Your future in finance starts with one step.
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal delay={200}>
-            <p className="text-text-secondary text-lg mb-12 max-w-md mx-auto">No experience required. All majors welcome.</p>
-          </ScrollReveal>
-          <ScrollReveal delay={300}>
-            <Link href="/contact" className="text-[13px] font-semibold text-base bg-accent hover:bg-accent-light rounded-lg px-8 py-4 transition-all duration-300 glow-accent-hover">
-              Join NPFIS Today
-            </Link>
-          </ScrollReveal>
-        </div>
-      </section>
+      {/* ▌CTA — PulseBeams with premium pill button */}
+      <BeamCTA />
     </>
   );
 }
