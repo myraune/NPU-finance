@@ -21,7 +21,7 @@ interface BeamPath {
     transition?: {
       duration?: number;
       repeat?: number;
-      repeatType?: string;
+      repeatType?: "loop" | "reverse" | "mirror";
       ease?: string;
       repeatDelay?: number;
       delay?: number;
@@ -146,7 +146,7 @@ const SVGs = ({
             gradientUnits="userSpaceOnUse"
             initial={beam.gradientConfig.initial}
             animate={beam.gradientConfig.animate}
-            transition={beam.gradientConfig.transition}
+            transition={beam.gradientConfig.transition as any}
           >
             <GradientColors colors={gradientColors} />
           </motion.linearGradient>
