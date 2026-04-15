@@ -95,7 +95,13 @@
    Base Styles
    ═══════════════════════════════════════════════════ */
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* Kill horizontal scroll at the root — iOS ignores body-only overflow-x */
+  overflow-x: clip;
+  /* Smoother momentum scroll on iOS */
+  -webkit-overflow-scrolling: touch;
+}
 
 body {
   font-family: var(--font-inter, "Inter"), system-ui, -apple-system, sans-serif;
@@ -103,7 +109,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: var(--color-base);
   color: var(--color-text-primary);
-  overflow-x: hidden;
+  overflow-x: clip;
+  /* Prevent layout jump when iOS address bar shows/hides */
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Respect reduced motion & tame scroll-reveal overflow on small screens */
+@media (max-width: 767px) {
+  html { scroll-behavior: auto; }
 }
 
 h1, h2, h3, h4 {

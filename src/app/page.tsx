@@ -7,12 +7,25 @@ import ScrollReveal from "@/components/ScrollReveal";
 import GradientOrb from "@/components/GradientOrb";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import BeamCTA from "@/components/BeamCTA";
+import AddToCalendar from "@/components/AddToCalendar";
+
+const angelEvent = {
+  title: "Angel Escobedo and Navigating Early Career Success in Finance",
+  description:
+    "Gain information on how to navigate through internships and establish your career path.\n\nOur guest speaker has experience at JP Morgan, Morgan Stanley, angel investing, private equity, venture capital, PwC, and is currently an analyst at Old National Bank.\n\nSnacks and beverages will be provided!\n\nSpeaker's LinkedIn: https://www.linkedin.com/in/escobedo-angel",
+  location: "JC 208, North Park University",
+  // Apr 15, 2026 · 12:00–2:00 PM CDT (UTC-5)
+  startUtc: "20260415T170000Z",
+  endUtc: "20260415T190000Z",
+};
+
+const SPEAKER_LINKEDIN = "https://www.linkedin.com/in/escobedo-angel";
 
 export default function Home() {
   return (
     <>
       {/* ▌HERO — full-bleed with grid pattern + orbs */}
-      <section className="relative h-screen w-full overflow-hidden">
+      <section className="relative h-[100svh] min-h-[600px] w-full overflow-hidden">
         <Image
           src={images.campusAerial}
           alt="North Park University campus aerial view"
@@ -51,8 +64,78 @@ export default function Home() {
 
       <div className="hr-gold" />
 
+      {/* ▌UPCOMING EVENT — pinned high for visibility */}
+      <ScrollReveal direction="none" className="relative group overflow-hidden mx-3 md:mx-6 rounded-2xl my-3 md:min-h-[60vh]">
+        <Image
+          src={images.johnsonCenterDusk}
+          alt="Johnson Center at dusk"
+          fill
+          className="object-cover image-reveal"
+          sizes="(max-width: 768px) 100vw, 95vw"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-base/95 via-base/80 md:via-base/85 to-base/60 md:to-base/30" />
+        <div className="relative z-10 flex flex-col justify-center px-6 sm:px-8 md:px-16 lg:px-24 py-14 md:py-20">
+          <p className="text-accent text-[10px] md:text-[11px] tracking-[0.15em] uppercase font-medium mb-3 md:mb-4">Upcoming Event — Wednesday, April 15</p>
+          <h2 className="text-[26px] leading-[1.1] sm:text-3xl md:text-5xl font-semibold tracking-[-0.02em] mb-3 max-w-2xl">
+            Angel Escobedo and Navigating Early Career Success in Finance
+          </h2>
+          <p className="text-text-tertiary max-w-lg mb-5 text-xs md:text-sm">12:00–2:00 PM &middot; JC 208</p>
+
+          <ul className="text-text-secondary max-w-xl mb-5 text-[13px] md:text-sm leading-relaxed space-y-2 list-none">
+            <li className="flex gap-3">
+              <span className="text-accent select-none mt-[2px] shrink-0">▸</span>
+              <span>Gain information on how to navigate through internships and establish your career path.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-accent select-none mt-[2px] shrink-0">▸</span>
+              <span>
+                Our guest speaker has experience at JP Morgan, Morgan Stanley, angel investing, private equity, venture capital, PwC, and is currently an analyst at Old National Bank.
+              </span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-accent select-none mt-[2px] shrink-0">▸</span>
+              <span>Snacks and beverages will be provided.</span>
+            </li>
+          </ul>
+
+          <a
+            href={SPEAKER_LINKEDIN}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-accent hover:text-accent-light transition-colors text-xs font-medium mb-7 md:mb-8 w-fit"
+          >
+            <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+            </svg>
+            View speaker's LinkedIn
+          </a>
+
+          <div className="flex flex-wrap items-center gap-3">
+            <AddToCalendar
+              title={angelEvent.title}
+              description={angelEvent.description}
+              location={angelEvent.location}
+              startUtc={angelEvent.startUtc}
+              endUtc={angelEvent.endUtc}
+            />
+            <Link
+              href="/events/angel-escobedo-april-2026"
+              className="inline-flex items-center gap-2 rounded-lg glass-accent text-accent hover:text-accent-light px-5 py-3 text-[13px] font-semibold transition-all duration-300 group"
+            >
+              More info
+              <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </ScrollReveal>
+
+      <div className="hr-gold" />
+
       {/* ▌ABOUT SPLIT — asymmetric */}
-      <section className="grid md:grid-cols-[1.3fr_1fr] min-h-screen">
+      <section className="grid md:grid-cols-[1.3fr_1fr] md:min-h-screen">
         <div className="flex flex-col justify-center px-6 md:px-16 lg:px-28 py-24 md:py-0">
           <ScrollReveal>
             <p className="text-accent text-[11px] tracking-[0.15em] uppercase font-medium mb-6">Who We Are</p>
@@ -81,7 +164,7 @@ export default function Home() {
             </Link>
           </ScrollReveal>
         </div>
-        <ScrollReveal direction="left" className="relative group overflow-hidden min-h-[400px] m-0 md:m-8 md:rounded-2xl">
+        <ScrollReveal direction="left" className="relative group overflow-hidden h-[50vh] md:h-auto md:min-h-[400px] m-0 md:m-8 md:rounded-2xl">
           <Image
             src={images.oldMain}
             alt="Old Main building at North Park University"
@@ -133,8 +216,8 @@ export default function Home() {
 
       {/* ▌CAMPUS GALLERY — full width asymmetric */}
       <section className="px-3 md:px-6 py-3">
-        <div className="grid md:grid-cols-12 gap-3 h-[70vh]">
-          <ScrollReveal direction="right" className="md:col-span-7 relative group overflow-hidden rounded-2xl">
+        <div className="grid gap-3 md:grid-cols-12 md:h-[70vh]">
+          <ScrollReveal direction="right" className="md:col-span-7 relative group overflow-hidden rounded-2xl h-[46vh] md:h-auto">
             <Image
               src={images.johnsonCenter}
               alt="Johnson Center at North Park University"
@@ -143,15 +226,15 @@ export default function Home() {
               sizes="(max-width: 768px) 100vw, 60vw"
             />
             <div className="absolute inset-0 bg-base/30" />
-            <div className="absolute bottom-0 left-0 p-8 md:p-10">
-              <div className="glass-accent rounded-lg px-4 py-3 inline-block">
+            <div className="absolute bottom-0 left-0 p-6 md:p-10">
+              <div className="glass-accent rounded-lg px-4 py-3 inline-block max-w-[calc(100%-1rem)]">
                 <p className="text-accent text-[10px] tracking-[0.15em] uppercase font-medium mb-1">Johnson Center</p>
-                <p className="text-text-primary text-lg md:text-xl font-semibold">Where innovation meets tradition</p>
+                <p className="text-text-primary text-base md:text-xl font-semibold">Where innovation meets tradition</p>
               </div>
             </div>
           </ScrollReveal>
-          <div className="md:col-span-5 grid grid-rows-2 gap-3">
-            <ScrollReveal delay={150} className="relative group overflow-hidden rounded-2xl">
+          <div className="md:col-span-5 grid gap-3 md:grid-rows-2">
+            <ScrollReveal delay={150} className="relative group overflow-hidden rounded-2xl h-[28vh] md:h-auto">
               <Image
                 src={images.fallCampus}
                 alt="North Park campus in fall"
@@ -161,7 +244,7 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-base/10" />
             </ScrollReveal>
-            <ScrollReveal delay={300} className="relative group overflow-hidden rounded-2xl">
+            <ScrollReveal delay={300} className="relative group overflow-hidden rounded-2xl h-[28vh] md:h-auto">
               <Image
                 src={images.springCampus}
                 alt="North Park campus in spring"
@@ -179,32 +262,6 @@ export default function Home() {
 
       {/* ▌CALCULATOR — S&P 500 investment estimator */}
       <InvestmentCalculator />
-
-      <div className="hr-gold" />
-
-      {/* ▌UPCOMING EVENT */}
-      <ScrollReveal direction="none" className="relative h-[60vh] group overflow-hidden mx-3 md:mx-6 rounded-2xl my-3">
-        <Image
-          src={images.johnsonCenterDusk}
-          alt="Johnson Center at dusk"
-          fill
-          className="object-cover image-reveal"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-base via-base/80 to-transparent" />
-        <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24">
-          <p className="text-accent text-[11px] tracking-[0.15em] uppercase font-medium mb-4">Upcoming Event — April 15</p>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.02em] mb-3 max-w-2xl">Angel Escobedo &amp; Navigating Early Career Success in Finance</h2>
-          <p className="text-text-tertiary max-w-lg mb-3">12:00–2:00 PM &middot; Magnuson Campus Center, Room 4</p>
-          <p className="text-text-secondary max-w-lg mb-8 text-sm leading-relaxed">Guest speaker with experience at JP Morgan, Morgan Stanley, PwC, and more. Snacks and beverages provided!</p>
-          <Link href="/events" className="group relative overflow-hidden inline-flex items-center gap-2 text-[13px] font-semibold text-base bg-accent hover:bg-accent-light rounded-lg px-7 py-3.5 w-fit transition-all duration-300 glow-accent-hover hover:scale-[1.02] btn-shimmer">
-            View Event &amp; Register
-            <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-            </svg>
-          </Link>
-        </div>
-      </ScrollReveal>
 
       <div className="hr-gold" />
 

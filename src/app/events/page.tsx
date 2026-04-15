@@ -6,7 +6,7 @@ import Link from "next/link";
 import { images } from "@/lib/images";
 import ScrollReveal from "@/components/ScrollReveal";
 import GradientOrb from "@/components/GradientOrb";
-import RegistrationModal from "@/components/RegistrationModal";
+import AddToCalendar from "@/components/AddToCalendar";
 
 interface Event {
   id: string;
@@ -27,9 +27,21 @@ const fallbackImages = [
   images.springCampus,
 ];
 
+// Hard-coded Apr 15, 2026 · 12:00–2:00 PM CDT (UTC-5) so the known event wires straight into calendars.
+// (If future events need different times, add `startUtc`/`endUtc` to the Event model.)
+const KNOWN_EVENT_TIMES: Record<string, { startUtc: string; endUtc: string }> = {
+  "angel-escobedo-april-2026": {
+    startUtc: "20260415T170000Z",
+    endUtc: "20260415T190000Z",
+  },
+};
+
+// Events that have a dedicated marketing detail page. The route is
+// /events/<id> and enables the "More info" link in the card.
+const EVENT_DETAIL_ROUTES = new Set<string>(["angel-escobedo-april-2026"]);
+
 export default function Events() {
   const [events, setEvents] = useState<Event[]>([]);
-  const [registering, setRegistering] = useState<Event | null>(null);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -47,7 +59,7 @@ export default function Events() {
   return (
     <>
       {/* ---- HERO ---- */}
-      <section className="relative h-[55vh] w-full overflow-hidden">
+      <section className="relative h-[55svh] min-h-[420px] w-full overflow-hidden">
         <Image
           src={images.johnsonCenterDusk}
           alt="Johnson Center at dusk"
@@ -143,26 +155,35 @@ export default function Events() {
                       <p className="text-text-secondary text-sm leading-relaxed mb-4">
                         {e.description}
                       </p>
-                      {e.lumaUrl ? (
-                        <a
-                          href={e.lumaUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-lg bg-accent text-base font-semibold glow-accent-hover px-6 py-2.5 transition-all duration-300 hover:bg-accent-light text-sm"
-                        >
-                          Register on Luma
-                          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                          </svg>
-                        </a>
-                      ) : (
-                        <button
-                          onClick={() => setRegistering(e)}
-                          className="rounded-lg bg-accent text-base font-semibold glow-accent-hover px-6 py-2.5 transition-all duration-300 hover:bg-accent-light text-sm"
-                        >
-                          Register
-                        </button>
-                      )}
+                      {(() => {
+                        const known = KNOWN_EVENT_TIMES[e.id];
+                        // Fallback: synthesize start/end from the event.date string if we have no override.
+                        // Accepts "YYYY-MM-DD" or a plain month-day string; defaults to 12:00–14:00 CDT.
+                        const { startUtc, endUtc } = known ?? fallbackUtc(e.date);
+                        const hasDetailPage = EVENT_DETAIL_ROUTES.has(e.id);
+                        return (
+                          <div className="flex flex-wrap items-center gap-2">
+                            <AddToCalendar
+                              title={e.title}
+                              description={e.description}
+                              location={e.location}
+                              startUtc={startUtc}
+                              endUtc={endUtc}
+                            />
+                            {hasDetailPage && (
+                              <Link
+                                href={`/events/${e.id}`}
+                                className="inline-flex items-center gap-2 rounded-lg glass-accent text-accent hover:text-accent-light px-5 py-3 text-sm font-semibold transition-all duration-300 group"
+                              >
+                                More info
+                                <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                </svg>
+                              </Link>
+                            )}
+                          </div>
+                        );
+                      })()}
                     </div>
                   </div>
                 </div>
@@ -200,14 +221,32 @@ export default function Events() {
         </div>
       </section>
 
-      {/* Registration Modal */}
-      {registering && (
-        <RegistrationModal
-          eventId={registering.id}
-          eventTitle={registering.title}
-          onClose={() => setRegistering(null)}
-        />
-      )}
     </>
   );
+}
+
+/**
+ * Best-effort fallback when an event has no known start/end time.
+ * Parses YYYY-MM-DD or "Mon D" and defaults to 12:00–14:00 CDT (UTC-5).
+ */
+function fallbackUtc(dateStr: string): { startUtc: string; endUtc: string } {
+  let year = new Date().getUTCFullYear();
+  let month = 1;
+  let day = 1;
+  const iso = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateStr);
+  if (iso) {
+    year = Number(iso[1]);
+    month = Number(iso[2]);
+    day = Number(iso[3]);
+  } else {
+    const parsed = new Date(`${dateStr}, ${year}`);
+    if (!isNaN(parsed.getTime())) {
+      year = parsed.getFullYear();
+      month = parsed.getMonth() + 1;
+      day = parsed.getDate();
+    }
+  }
+  const pad = (n: number) => String(n).padStart(2, "0");
+  const base = `${year}${pad(month)}${pad(day)}T`;
+  return { startUtc: `${base}170000Z`, endUtc: `${base}190000Z` };
 }
