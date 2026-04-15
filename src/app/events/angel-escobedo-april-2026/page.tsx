@@ -12,9 +12,6 @@ export const metadata: Metadata = {
     "Join NPFIS on April 15, 2026 at JC 208 for a guest speaker session with Angel Escobedo on navigating internships and building a career in finance.",
 };
 
-// Poster card is a stylized composition (not the real Instagram banner) —
-// echoes the navy + gold aesthetic without using third-party logos.
-
 const event = {
   title: "Angel Escobedo and Navigating Early Career Success in Finance",
   date: "Wednesday, April 15, 2026",
@@ -32,52 +29,44 @@ const CONTACT_EMAIL = "tjhabetler@northpark.edu";
 const INSTAGRAM_HANDLE = "@fis_npu";
 const INSTAGRAM_URL = "https://www.instagram.com/fis_npu";
 
-// Speaker's career highlights — shown as branded badges.
-// Background and ring colors echo each firm's primary brand color at low
-// opacity so the grid stays monochrome-friendly with the rest of the site.
-const experience = [
+// Real brand logos, hosted locally in /public/logos/ (downloaded from
+// Wikimedia Commons). Displayed on a neutral light card so they read
+// correctly in both light and dark site themes.
+const firmLogos = [
   {
-    name: "JPMorgan Chase",
+    name: "JPMorgan",
     tag: "Investment Banking",
-    accent: "from-[#003E7E]/40 to-[#003E7E]/10",
-    ring: "ring-[#003E7E]/40",
+    src: "/logos/jpmorgan.svg",
+    alt: "JPMorgan logo",
+    aspect: "aspect-[4/1]",
   },
   {
     name: "Morgan Stanley",
     tag: "Wealth Management",
-    accent: "from-[#0068B5]/40 to-[#0068B5]/10",
-    ring: "ring-[#0068B5]/40",
+    src: "/logos/morgan-stanley.svg",
+    alt: "Morgan Stanley logo",
+    aspect: "aspect-[4/1]",
   },
   {
     name: "PwC",
     tag: "Advisory",
-    accent: "from-[#D04A02]/40 to-[#D04A02]/10",
-    ring: "ring-[#D04A02]/40",
+    src: "/logos/pwc.svg",
+    alt: "PwC logo",
+    aspect: "aspect-[3/2]",
   },
   {
     name: "Old National Bank",
     tag: "Currently · Analyst",
-    accent: "from-[#003B5C]/40 to-[#003B5C]/10",
-    ring: "ring-[#003B5C]/40",
+    src: "/logos/old-national.svg",
+    alt: "Old National Bank logo",
+    aspect: "aspect-[6/1]",
   },
-  {
-    name: "Private Equity",
-    tag: "Deal Experience",
-    accent: "from-accent/25 to-accent/5",
-    ring: "ring-accent/30",
-  },
-  {
-    name: "Venture Capital",
-    tag: "Early-Stage Investing",
-    accent: "from-accent/25 to-accent/5",
-    ring: "ring-accent/30",
-  },
-  {
-    name: "Angel Investing",
-    tag: "Personal Portfolio",
-    accent: "from-accent/25 to-accent/5",
-    ring: "ring-accent/30",
-  },
+];
+
+const otherExperience = [
+  { name: "Private Equity", tag: "Deal Experience" },
+  { name: "Venture Capital", tag: "Early-Stage Investing" },
+  { name: "Angel Investing", tag: "Personal Portfolio" },
 ];
 
 const takeaways = [
@@ -90,7 +79,7 @@ const takeaways = [
 export default function AngelEscobedoEventPage() {
   return (
     <>
-      {/* ---- HERO / BANNER ---- */}
+      {/* ---- HERO ---- */}
       <section className="relative min-h-[70svh] w-full overflow-hidden flex items-end">
         <Image
           src={images.johnsonCenterDusk}
@@ -100,13 +89,14 @@ export default function AngelEscobedoEventPage() {
           sizes="100vw"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-base/70 via-base/60 to-base" />
-        <div className="absolute inset-0 bg-grid opacity-60" />
+        {/* Dark gradient over image regardless of theme — so the hero text always has contrast. */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-base" />
+        <div className="absolute inset-0 bg-grid opacity-40" />
 
         <div className="relative z-10 px-6 md:px-12 lg:px-16 py-16 md:py-24 max-w-5xl">
           <Link
             href="/events"
-            className="reveal inline-flex items-center gap-2 text-text-tertiary hover:text-accent transition-colors text-xs tracking-[0.15em] uppercase font-medium mb-8"
+            className="reveal inline-flex items-center gap-2 text-white/70 hover:text-accent transition-colors text-xs tracking-[0.15em] uppercase font-medium mb-8"
           >
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -116,10 +106,10 @@ export default function AngelEscobedoEventPage() {
           <p className="reveal reveal-d1 text-[11px] tracking-[0.2em] uppercase font-medium text-accent mb-4">
             Guest Speaker · April 15, 2026
           </p>
-          <h1 className="reveal reveal-d2 text-4xl md:text-6xl lg:text-7xl font-bold tracking-[-0.02em] leading-[1.02] max-w-4xl">
+          <h1 className="reveal reveal-d2 text-4xl md:text-6xl lg:text-7xl font-bold tracking-[-0.02em] leading-[1.02] max-w-4xl text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.4)]">
             Angel Escobedo & Navigating Early Career Success in Finance
           </h1>
-          <div className="reveal reveal-d3 mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm md:text-base text-text-secondary">
+          <div className="reveal reveal-d3 mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm md:text-base text-white/80">
             <span className="inline-flex items-center gap-2">
               <span className="text-accent">◆</span>
               {event.time}
@@ -139,7 +129,7 @@ export default function AngelEscobedoEventPage() {
       {/* ---- MAIN CONTENT ---- */}
       <section className="bg-base py-16 md:py-24">
         <div className="px-6 md:px-12 lg:px-16 grid lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16 max-w-7xl mx-auto">
-          {/* ── LEFT COLUMN: Description + takeaways ── */}
+          {/* ── LEFT COLUMN: Description + logos + contact ── */}
           <div>
             <ScrollReveal>
               <p className="text-[11px] tracking-[0.15em] uppercase font-medium text-accent mb-3">
@@ -155,8 +145,8 @@ export default function AngelEscobedoEventPage() {
                 <p>
                   Angel Escobedo brings a rare breadth of experience — spanning bulge-bracket
                   investment banking, Big Four advisory, private markets, and community banking.
-                  This session is built for students who want an honest look at how careers actually
-                  get built.
+                  This session is built for students who want an honest look at how careers
+                  actually get built.
                 </p>
                 <p>
                   Whether you&apos;re aiming for your first internship or weighing offers, expect
@@ -179,29 +169,55 @@ export default function AngelEscobedoEventPage() {
               </ul>
             </ScrollReveal>
 
-            {/* ── Experience / logos grid ── */}
+            {/* ── Firms the speaker has worked at — real logos on neutral cards ── */}
             <ScrollReveal delay={300}>
-              <h3 className="mt-14 mb-6 text-xs tracking-[0.15em] uppercase font-medium text-text-tertiary">
-                Speaker&apos;s background
+              <h3 className="mt-14 mb-2 text-xs tracking-[0.15em] uppercase font-medium text-text-tertiary">
+                Where the speaker has worked
               </h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-2xl">
-                {experience.map((firm) => (
+              <p className="text-text-tertiary text-sm mb-6 max-w-xl">
+                A quick look at the firms across Angel&apos;s career.
+              </p>
+              <div className="grid grid-cols-2 gap-3 max-w-2xl">
+                {firmLogos.map((firm) => (
                   <div
                     key={firm.name}
-                    className={`relative rounded-xl p-4 md:p-5 bg-gradient-to-br ${firm.accent} ring-1 ${firm.ring} backdrop-blur-sm transition-transform duration-300 hover:scale-[1.02]`}
+                    className="relative rounded-xl bg-white border border-border-subtle px-5 py-6 flex flex-col items-center justify-center gap-3 transition-transform duration-300 hover:scale-[1.02] hover:shadow-md"
                   >
-                    <p className="font-semibold text-text-primary text-sm md:text-base leading-tight">
-                      {firm.name}
-                    </p>
-                    <p className="mt-1.5 text-[11px] tracking-[0.08em] uppercase text-text-tertiary">
+                    <div className={`relative w-full max-w-[160px] ${firm.aspect}`}>
+                      <Image
+                        src={firm.src}
+                        alt={firm.alt}
+                        fill
+                        className="object-contain"
+                        sizes="160px"
+                      />
+                    </div>
+                    <p className="text-[10px] tracking-[0.12em] uppercase text-neutral-500 font-medium">
                       {firm.tag}
                     </p>
                   </div>
                 ))}
               </div>
-              <p className="mt-4 text-xs text-text-muted max-w-2xl">
-                Firm names used for biographical purposes only. NPFIS is a student organization
-                and has no affiliation with these companies.
+
+              <h4 className="mt-8 mb-3 text-xs tracking-[0.15em] uppercase font-medium text-text-tertiary">
+                Also experienced in
+              </h4>
+              <div className="flex flex-wrap gap-2 max-w-2xl">
+                {otherExperience.map((x) => (
+                  <span
+                    key={x.name}
+                    className="inline-flex items-center gap-2 rounded-full border border-border-subtle bg-surface-1/60 px-3 py-1.5 text-xs text-text-secondary"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-accent" />
+                    {x.name}
+                    <span className="text-text-muted">·</span>
+                    <span className="text-text-tertiary">{x.tag}</span>
+                  </span>
+                ))}
+              </div>
+              <p className="mt-5 text-xs text-text-muted max-w-2xl">
+                Company logos shown for biographical reference only. NPFIS is a student
+                organization and has no affiliation with these firms.
               </p>
             </ScrollReveal>
 
@@ -239,121 +255,9 @@ export default function AngelEscobedoEventPage() {
             </ScrollReveal>
           </div>
 
-          {/* ── RIGHT COLUMN: Sticky details card ── */}
+          {/* ── RIGHT COLUMN: Details card only (no poster) ── */}
           <ScrollReveal direction="left">
-            <aside className="lg:sticky lg:top-28 space-y-4">
-              {/* Stylized poster card — mirrors the Instagram banner aesthetic
-                  (navy field, gold geometric corners, NPFIS shield, firm badges)
-                  without reproducing the actual poster image or third-party logos. */}
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-border-subtle bg-gradient-to-br from-[#0a1a3a] via-[#0b1730] to-[#070f22] p-6 md:p-7 flex flex-col">
-                {/* subtle grid + soft glows */}
-                <div className="absolute inset-0 bg-grid opacity-[0.18]" />
-                <div className="absolute -top-24 -left-16 w-64 h-64 rounded-full bg-accent/15 blur-3xl" />
-                <div className="absolute -bottom-32 -right-20 w-72 h-72 rounded-full bg-[#0068B5]/20 blur-3xl" />
-
-                {/* gold geometric corner — top right */}
-                <svg
-                  className="absolute -top-1 -right-1 w-28 h-28 text-accent/70"
-                  viewBox="0 0 120 120"
-                  fill="none"
-                  aria-hidden
-                >
-                  <path d="M120 0 L120 120 L60 0 Z" fill="currentColor" opacity="0.85" />
-                  <path d="M120 30 L120 120 L30 120 Z" fill="currentColor" opacity="0.35" />
-                </svg>
-                {/* gold geometric corner — bottom left */}
-                <svg
-                  className="absolute -bottom-1 -left-1 w-24 h-24 text-accent/60"
-                  viewBox="0 0 120 120"
-                  fill="none"
-                  aria-hidden
-                >
-                  <path d="M0 120 L0 0 L60 120 Z" fill="currentColor" opacity="0.8" />
-                  <path d="M0 90 L0 0 L90 0 Z" fill="currentColor" opacity="0.3" />
-                </svg>
-
-                <div className="relative z-10 flex flex-col h-full">
-                  {/* top row: date + shield monogram */}
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="text-accent font-semibold text-[13px] tracking-wide">
-                        4/15 · 12:00 – 2:00 PM
-                      </p>
-                      <p className="text-text-secondary text-[12px] tracking-wide mt-0.5">
-                        @ Johnson 208
-                      </p>
-                    </div>
-                    {/* NPFIS monogram shield */}
-                    <div className="relative w-11 h-12 shrink-0">
-                      <svg viewBox="0 0 44 48" className="w-full h-full" aria-hidden>
-                        <path
-                          d="M22 0 L44 8 V26 C44 38 34 46 22 48 C10 46 0 38 0 26 V8 Z"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          className="text-accent"
-                        />
-                      </svg>
-                      <span className="absolute inset-0 flex items-center justify-center text-accent font-bold text-[11px] tracking-[0.08em]">
-                        NP
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* main title block */}
-                  <h3 className="mt-5 text-[28px] md:text-[30px] font-bold leading-[0.98] tracking-[-0.02em] text-text-primary">
-                    Finance &amp;<br />Investment<br />Society
-                  </h3>
-
-                  <div className="mt-5 h-px bg-gradient-to-r from-accent/60 via-accent/20 to-transparent" />
-
-                  <p className="mt-4 text-accent text-[10px] tracking-[0.2em] uppercase font-medium">
-                    Guest Speaker
-                  </p>
-                  <p className="text-xl md:text-2xl font-bold text-text-primary mt-1 leading-tight">
-                    Angel Escobedo
-                  </p>
-
-                  {/* firm pills — colored per brand */}
-                  <div className="mt-5 flex flex-wrap gap-1.5">
-                    {[
-                      { n: "JPMorgan", color: "bg-[#003E7E]/70 ring-[#003E7E]/60" },
-                      { n: "Morgan Stanley", color: "bg-[#0068B5]/60 ring-[#0068B5]/60" },
-                      { n: "PwC", color: "bg-[#D04A02]/60 ring-[#D04A02]/50" },
-                      { n: "Old National", color: "bg-[#003B5C]/70 ring-[#003B5C]/60" },
-                    ].map((b) => (
-                      <span
-                        key={b.n}
-                        className={`text-[9px] md:text-[10px] tracking-[0.06em] uppercase font-semibold text-white/95 ${b.color} ring-1 rounded-md px-2 py-1`}
-                      >
-                        {b.n}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* spacer pushes the footer down */}
-                  <div className="flex-1" />
-
-                  {/* footer: snacks line + contact/IG */}
-                  <div className="mt-5 pt-4 border-t border-white/10">
-                    <p className="text-[11px] text-text-secondary leading-snug">
-                      Snacks &amp; beverages provided.
-                    </p>
-                    <div className="mt-2 flex items-center justify-between gap-3">
-                      <p className="text-[10px] text-text-tertiary truncate">
-                        tjhabetler@northpark.edu
-                      </p>
-                      <span className="inline-flex items-center gap-1 text-accent text-[10px] font-semibold shrink-0">
-                        <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                          <path d="M12 2.163c3.204 0 3.584.012 4.849.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.849.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-                        </svg>
-                        @fis_npu
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+            <aside className="lg:sticky lg:top-28">
               <div className="glass-strong rounded-2xl p-6 md:p-7 space-y-5">
                 <div>
                   <p className="text-[10px] tracking-[0.2em] uppercase font-medium text-accent mb-2">
