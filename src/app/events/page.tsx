@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { images } from "@/lib/images";
@@ -27,8 +27,8 @@ const fallbackImages = [
   images.springCampus,
 ];
 
-// Hard-coded Apr 15, 2026 · 12:00–2:00 PM CDT (UTC-5) so the known event wires straight into calendars.
-// (If future events need different times, add `startUtc`/`endUtc` to the Event model.)
+// Known event UTC times. Kept here so calendar links point at the right
+// moment even if the free-text `date`/`time` fields on the row are loose.
 const KNOWN_EVENT_TIMES: Record<string, { startUtc: string; endUtc: string }> = {
   "angel-escobedo-april-2026": {
     startUtc: "20260415T170000Z",
@@ -36,9 +36,14 @@ const KNOWN_EVENT_TIMES: Record<string, { startUtc: string; endUtc: string }> = 
   },
 };
 
-// Events that have a dedicated marketing detail page. The route is
-// /events/<id> and enables the "More info" link in the card.
+// Events that have a dedicated marketing detail page at /events/<id>.
 const EVENT_DETAIL_ROUTES = new Set<string>(["angel-escobedo-april-2026"]);
+
+/** Convert compact UTC (YYYYMMDDTHHMMSSZ) into epoch ms. */
+function utcToMs(utc: string): number {
+  const iso = `${utc.slice(0, 4)}-${utc.slice(4, 6)}-${utc.slice(6, 8)}T${utc.slice(9, 11)}:${utc.slice(11, 13)}:${utc.slice(13, 15)}Z`;
+  return Date.parse(iso);
+}
 
 export default function Events() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -54,7 +59,21 @@ export default function Events() {
       .catch(() => setLoaded(true));
   }, []);
 
-  const upcoming = events.filter((e) => e.status === "UPCOMING");
+  // Partition by actual clock time, not DB status — a row can still say
+  // "UPCOMING" after the event has ended, and the UI should correct for that.
+  const { upcoming, past } = useMemo(() => {
+    const now = Date.now();
+    const up: Event[] = [];
+    const pa: Event[] = [];
+    for (const e of events) {
+      const known = KNOWN_EVENT_TIMES[e.id];
+      const endMs = known ? utcToMs(known.endUtc) : utcToMs(fallbackUtc(e.date).endUtc);
+      const isPast = e.status === "PAST" || (Number.isFinite(endMs) && endMs < now);
+      if (isPast) pa.push(e);
+      else if (e.status === "UPCOMING") up.push(e);
+    }
+    return { upcoming: up, past: pa };
+  }, [events]);
 
   return (
     <>
@@ -84,7 +103,7 @@ export default function Events() {
 
       {/* ---- UPCOMING EVENTS ---- */}
       <section className="bg-base py-20 md:py-28">
-        <div className="px-6 md:px-12 mb-12 flex items-end justify-between">
+        <div className="px-6 md:px-12 mb-12 flex items-end justify-between gap-4">
           <ScrollReveal>
             <p className="text-[11px] tracking-[0.15em] uppercase font-medium text-accent mb-2">
               Upcoming
@@ -96,7 +115,7 @@ export default function Events() {
           <ScrollReveal delay={100}>
             <Link
               href="/events/calendar"
-              className="glass-accent text-xs font-semibold text-accent hover:text-accent-light px-5 py-2.5 rounded-lg glow-accent-hover transition-all duration-300 flex items-center gap-2"
+              className="glass-accent text-xs font-semibold text-accent hover:text-accent-light px-5 py-2.5 rounded-lg glow-accent-hover transition-all duration-300 flex items-center gap-2 whitespace-nowrap"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
@@ -157,8 +176,6 @@ export default function Events() {
                       </p>
                       {(() => {
                         const known = KNOWN_EVENT_TIMES[e.id];
-                        // Fallback: synthesize start/end from the event.date string if we have no override.
-                        // Accepts "YYYY-MM-DD" or a plain month-day string; defaults to 12:00–14:00 CDT.
                         const { startUtc, endUtc } = known ?? fallbackUtc(e.date);
                         const hasDetailPage = EVENT_DETAIL_ROUTES.has(e.id);
                         return (
@@ -193,6 +210,74 @@ export default function Events() {
         )}
       </section>
 
+      {/* ---- PAST EVENTS ---- */}
+      {loaded && past.length > 0 && (
+        <section className="bg-base py-16 md:py-24 border-t border-border-subtle">
+          <div className="px-6 md:px-12 mb-8 md:mb-10">
+            <ScrollReveal>
+              <p className="text-[11px] tracking-[0.15em] uppercase font-medium text-text-tertiary mb-2">
+                Past Events
+              </p>
+              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
+                Recent sessions
+              </h2>
+            </ScrollReveal>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 px-6 md:px-12">
+            {past.map((e, i) => {
+              const hasDetailPage = EVENT_DETAIL_ROUTES.has(e.id);
+              const Inner = (
+                <div className="group relative h-full min-h-[240px] md:min-h-[280px] rounded-2xl overflow-hidden border border-border-subtle hover:border-accent/30 transition-colors duration-500">
+                  <Image
+                    src={e.imageUrl || fallbackImages[i % fallbackImages.length]}
+                    alt={e.title}
+                    fill
+                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-base via-base/70 to-base/30" />
+
+                  <span className="absolute top-3 left-3 z-20 inline-flex items-center gap-1.5 rounded-full bg-base/70 backdrop-blur-md px-2.5 py-1 text-[10px] tracking-[0.12em] uppercase font-medium text-text-secondary border border-border-subtle">
+                    <span className="w-1.5 h-1.5 rounded-full bg-text-tertiary" />
+                    Concluded
+                  </span>
+
+                  <div className="absolute bottom-0 inset-x-0 p-5 md:p-6">
+                    <div className="flex items-center gap-2 mb-1.5 text-[10px] tracking-[0.12em] uppercase">
+                      <span className="font-medium text-text-tertiary">{e.date}</span>
+                      <span className="text-text-muted">·</span>
+                      <span className="text-text-tertiary">{e.location}</span>
+                    </div>
+                    <h3 className="text-base md:text-lg font-semibold tracking-tight leading-tight text-text-primary group-hover:text-accent transition-colors duration-500 text-balance">
+                      {e.title}
+                    </h3>
+                    {hasDetailPage && (
+                      <span className="mt-3 inline-flex items-center gap-1.5 text-accent text-xs font-semibold">
+                        Read recap
+                        <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                        </svg>
+                      </span>
+                    )}
+                  </div>
+                </div>
+              );
+              return (
+                <ScrollReveal key={e.id} delay={i * 80}>
+                  {hasDetailPage ? (
+                    <Link href={`/events/${e.id}`} className="block h-full">
+                      {Inner}
+                    </Link>
+                  ) : (
+                    Inner
+                  )}
+                </ScrollReveal>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       {/* ---- CTA ---- */}
       <section className="relative bg-base py-28 md:py-40 text-center px-6 overflow-hidden">
@@ -220,7 +305,6 @@ export default function Events() {
           </ScrollReveal>
         </div>
       </section>
-
     </>
   );
 }

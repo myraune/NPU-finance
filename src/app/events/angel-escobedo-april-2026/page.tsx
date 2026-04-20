@@ -109,9 +109,15 @@ export default function AngelEscobedoEventPage() {
             </svg>
             All Events
           </Link>
-          <p className="reveal reveal-d1 text-[10px] md:text-[11px] tracking-[0.2em] uppercase font-medium text-accent mb-3 md:mb-4">
-            Guest Speaker · April 15, 2026
-          </p>
+          <div className="reveal reveal-d1 flex flex-wrap items-center gap-3 mb-3 md:mb-4">
+            <p className="text-[10px] md:text-[11px] tracking-[0.2em] uppercase font-medium text-accent">
+              Guest Speaker · April 15, 2026
+            </p>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 backdrop-blur-md px-2.5 py-1 text-[10px] tracking-[0.12em] uppercase font-medium text-white/85 border border-white/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-white/60" />
+              Concluded
+            </span>
+          </div>
           <h1 className="reveal reveal-d2 text-[28px] sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-[-0.02em] leading-[1.05] md:leading-[1.02] max-w-4xl text-white text-balance drop-shadow-[0_2px_24px_rgba(0,0,0,0.4)]">
             Angel Escobedo & Navigating Early Career Success in Finance
           </h1>
@@ -268,12 +274,15 @@ export default function AngelEscobedoEventPage() {
             <aside className="lg:sticky lg:top-28">
               <div className="glass-strong rounded-2xl p-5 sm:p-6 md:p-7 space-y-5">
                 <div>
-                  <p className="text-[10px] tracking-[0.2em] uppercase font-medium text-accent mb-2">
+                  <p className="text-[10px] tracking-[0.2em] uppercase font-medium text-text-tertiary mb-2">
                     Event details
                   </p>
                   <h3 className="text-lg font-semibold text-text-primary leading-tight">
-                    Save the date
+                    Event concluded
                   </h3>
+                  <p className="text-text-tertiary text-xs mt-1">
+                    Thanks to everyone who came out.
+                  </p>
                 </div>
 
                 <dl className="space-y-4 text-sm">
@@ -340,23 +349,34 @@ export default function AngelEscobedoEventPage() {
         <div className="relative z-10 max-w-2xl mx-auto">
           <ScrollReveal>
             <p className="text-[11px] tracking-[0.15em] uppercase font-medium text-accent mb-3 md:mb-4">
-              See you there
+              Thanks for coming
             </p>
             <h2 className="text-[28px] sm:text-3xl md:text-5xl font-bold tracking-tight mb-5 md:mb-6 leading-[1.1] text-balance">
-              Bring a friend. Bring questions.
+              Don&apos;t miss the next one.
             </h2>
             <p className="text-text-tertiary text-sm sm:text-base md:text-lg mb-8 md:mb-10">
-              Wednesday, April 15 · 12:00–2:00 PM · JC 208
+              Follow NPFIS to catch upcoming workshops, speakers, and competitions.
             </p>
-            <Link
-              href="/events"
-              className="inline-flex items-center gap-2 text-accent hover:text-accent-light transition-colors text-sm font-semibold min-h-[44px] py-2"
-            >
-              Back to all events
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </Link>
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+              <Link
+                href="/events"
+                className="inline-flex items-center gap-2 text-accent hover:text-accent-light transition-colors text-sm font-semibold min-h-[44px] py-2"
+              >
+                All events
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </Link>
+              <span className="text-text-muted text-xs">·</span>
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-accent hover:text-accent-light transition-colors text-sm font-semibold min-h-[44px] py-2"
+              >
+                Follow @fis_npu
+              </a>
+            </div>
           </ScrollReveal>
         </div>
       </section>

@@ -7,19 +7,6 @@ import ScrollReveal from "@/components/ScrollReveal";
 import GradientOrb from "@/components/GradientOrb";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import BeamCTA from "@/components/BeamCTA";
-import AddToCalendar from "@/components/AddToCalendar";
-
-const angelEvent = {
-  title: "Angel Escobedo and Navigating Early Career Success in Finance",
-  description:
-    "Gain information on how to navigate through internships and establish your career path.\n\nOur guest speaker has experience at JP Morgan, Morgan Stanley, angel investing, private equity, venture capital, PwC, and is currently an analyst at Old National Bank.\n\nSnacks and beverages will be provided!\n\nSpeaker's LinkedIn: https://www.linkedin.com/in/escobedo-angel",
-  location: "JC 208, North Park University",
-  // Apr 15, 2026 · 12:00–2:00 PM CDT (UTC-5)
-  startUtc: "20260415T170000Z",
-  endUtc: "20260415T190000Z",
-};
-
-const SPEAKER_LINKEDIN = "https://www.linkedin.com/in/escobedo-angel";
 
 export default function Home() {
   return (
@@ -61,76 +48,6 @@ export default function Home() {
 
       {/* ▌LIVE STOCK TICKER */}
       <StockTicker />
-
-      <div className="hr-gold" />
-
-      {/* ▌UPCOMING EVENT — pinned high for visibility */}
-      <ScrollReveal direction="none" className="relative group overflow-hidden mx-3 md:mx-6 rounded-2xl my-3 md:min-h-[60vh]">
-        <Image
-          src={images.johnsonCenterDusk}
-          alt="Johnson Center at dusk"
-          fill
-          className="object-cover image-reveal"
-          sizes="(max-width: 768px) 100vw, 95vw"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-base/95 via-base/80 md:via-base/85 to-base/60 md:to-base/30" />
-        <div className="relative z-10 flex flex-col justify-center px-6 sm:px-8 md:px-16 lg:px-24 py-14 md:py-20">
-          <p className="text-accent text-[10px] md:text-[11px] tracking-[0.15em] uppercase font-medium mb-3 md:mb-4">Upcoming Event — Wednesday, April 15</p>
-          <h2 className="text-[26px] leading-[1.1] sm:text-3xl md:text-5xl font-semibold tracking-[-0.02em] mb-3 max-w-2xl">
-            Angel Escobedo and Navigating Early Career Success in Finance
-          </h2>
-          <p className="text-text-tertiary max-w-lg mb-5 text-xs md:text-sm">12:00–2:00 PM &middot; JC 208</p>
-
-          <ul className="text-text-secondary max-w-xl mb-5 text-[13px] md:text-sm leading-relaxed space-y-2 list-none">
-            <li className="flex gap-3">
-              <span className="text-accent select-none mt-[2px] shrink-0">▸</span>
-              <span>Gain information on how to navigate through internships and establish your career path.</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="text-accent select-none mt-[2px] shrink-0">▸</span>
-              <span>
-                Our guest speaker has experience at JP Morgan, Morgan Stanley, angel investing, private equity, venture capital, PwC, and is currently an analyst at Old National Bank.
-              </span>
-            </li>
-            <li className="flex gap-3">
-              <span className="text-accent select-none mt-[2px] shrink-0">▸</span>
-              <span>Snacks and beverages will be provided.</span>
-            </li>
-          </ul>
-
-          <a
-            href={SPEAKER_LINKEDIN}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-accent hover:text-accent-light transition-colors text-xs font-medium mb-7 md:mb-8 w-fit"
-          >
-            <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-            </svg>
-            View speaker's LinkedIn
-          </a>
-
-          <div className="flex flex-wrap items-center gap-3">
-            <AddToCalendar
-              title={angelEvent.title}
-              description={angelEvent.description}
-              location={angelEvent.location}
-              startUtc={angelEvent.startUtc}
-              endUtc={angelEvent.endUtc}
-            />
-            <Link
-              href="/events/angel-escobedo-april-2026"
-              className="inline-flex items-center gap-2 rounded-lg glass-accent text-accent hover:text-accent-light px-5 py-3 text-[13px] font-semibold transition-all duration-300 group"
-            >
-              More info
-              <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </Link>
-          </div>
-        </div>
-      </ScrollReveal>
 
       <div className="hr-gold" />
 
@@ -212,6 +129,81 @@ export default function Home() {
             </div>
           </ScrollReveal>
         ))}
+      </section>
+
+      <div className="hr-gold" />
+
+      {/* ▌PAST EVENT — compact recap card, links to detail page */}
+      <section className="bg-base py-16 md:py-24">
+        <div className="px-6 md:px-12 lg:px-16 max-w-7xl mx-auto">
+          <ScrollReveal>
+            <div className="mb-8 md:mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+              <div>
+                <p className="text-accent text-[11px] tracking-[0.15em] uppercase font-medium mb-2">
+                  Past Event
+                </p>
+                <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
+                  What we&apos;ve hosted recently
+                </h2>
+              </div>
+              <Link
+                href="/events"
+                className="text-[13px] text-text-tertiary hover:text-accent transition-colors inline-flex items-center gap-2 w-fit group"
+              >
+                All events
+                <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </Link>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={100}>
+            <Link
+              href="/events/angel-escobedo-april-2026"
+              className="group relative block overflow-hidden rounded-2xl border border-border-subtle hover:border-accent/40 transition-colors duration-500"
+            >
+              <div className="grid md:grid-cols-[1fr_1.2fr]">
+                {/* Image side */}
+                <div className="relative h-[220px] md:h-auto md:min-h-[260px] overflow-hidden">
+                  <Image
+                    src={images.johnsonCenterDusk}
+                    alt="Johnson Center at dusk"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-base/70 via-base/30 to-transparent" />
+                  <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-base/70 backdrop-blur-md px-3 py-1 text-[10px] tracking-[0.12em] uppercase font-medium text-text-secondary border border-border-subtle">
+                    <span className="w-1.5 h-1.5 rounded-full bg-text-tertiary" />
+                    Concluded
+                  </span>
+                </div>
+
+                {/* Copy side */}
+                <div className="p-6 sm:p-8 md:p-10 flex flex-col justify-center bg-surface-0/60">
+                  <p className="text-[10px] md:text-[11px] tracking-[0.15em] uppercase font-medium text-text-tertiary mb-3">
+                    April 15, 2026 · JC 208
+                  </p>
+                  <h3 className="text-[22px] sm:text-2xl md:text-3xl font-semibold tracking-tight leading-[1.15] mb-3 text-balance group-hover:text-accent transition-colors duration-500">
+                    Angel Escobedo &amp; Navigating Early Career Success in Finance
+                  </h3>
+                  <p className="text-text-tertiary text-sm md:text-[15px] leading-relaxed mb-5 max-w-xl text-pretty">
+                    A candid conversation with a multi-hat finance professional — covering
+                    internships, career paths, and real perspective from JP Morgan, Morgan Stanley,
+                    PwC, and Old National Bank.
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-accent text-sm font-semibold w-fit">
+                    Read the recap
+                    <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </Link>
+          </ScrollReveal>
+        </div>
       </section>
 
       {/* ▌CAMPUS GALLERY — full width asymmetric */}
