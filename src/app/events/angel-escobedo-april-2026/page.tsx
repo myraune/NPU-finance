@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { images } from "@/lib/images";
 import ScrollReveal from "@/components/ScrollReveal";
 import GradientOrb from "@/components/GradientOrb";
-import AddToCalendar from "@/components/AddToCalendar";
 
 export const metadata: Metadata = {
   title: "Angel Escobedo — Navigating Early Career Success in Finance | NPFIS",
@@ -315,14 +314,6 @@ export default function AngelEscobedoEventPage() {
                 </dl>
 
                 <div className="pt-3 border-t border-border-subtle space-y-3">
-                  <AddToCalendar
-                    title={event.title}
-                    description={event.description}
-                    location={event.locationShort}
-                    startUtc={event.startUtc}
-                    endUtc={event.endUtc}
-                    className="w-full inline-flex justify-center items-center gap-2 rounded-lg bg-accent text-base font-semibold glow-accent-hover px-5 py-3 transition-all duration-300 hover:bg-accent-light text-sm min-h-[44px]"
-                  />
                   <a
                     href={SPEAKER_LINKEDIN}
                     target="_blank"
