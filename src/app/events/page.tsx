@@ -63,16 +63,21 @@ export default function Events() {
   // "UPCOMING" after the event has ended, and the UI should correct for that.
   const { upcoming, past } = useMemo(() => {
     const now = Date.now();
-    const up: Event[] = [];
-    const pa: Event[] = [];
+    const up: { e: Event; start: number }[] = [];
+    const pa: { e: Event; start: number }[] = [];
     for (const e of events) {
       const known = KNOWN_EVENT_TIMES[e.id];
-      const endMs = known ? utcToMs(known.endUtc) : utcToMs(fallbackUtc(e.date).endUtc);
+      const { startUtc, endUtc } = known ?? fallbackUtc(e.date);
+      const startMs = utcToMs(startUtc);
+      const endMs = utcToMs(endUtc);
       const isPast = e.status === "PAST" || (Number.isFinite(endMs) && endMs < now);
-      if (isPast) pa.push(e);
-      else if (e.status === "UPCOMING") up.push(e);
+      if (isPast) pa.push({ e, start: startMs });
+      else if (e.status === "UPCOMING") up.push({ e, start: startMs });
     }
-    return { upcoming: up, past: pa };
+    // Upcoming: soonest first. Past: most recent first.
+    up.sort((a, b) => a.start - b.start);
+    pa.sort((a, b) => b.start - a.start);
+    return { upcoming: up.map((x) => x.e), past: pa.map((x) => x.e) };
   }, [events]);
 
   return (
@@ -264,7 +269,7 @@ export default function Events() {
                 </div>
               );
               return (
-                <ScrollReveal key={e.id} delay={i * 80}>
+                <ScrollReveal key={e.id} delay={i * 80} className="h-full">
                   {hasDetailPage ? (
                     <Link href={`/events/${e.id}`} className="block h-full">
                       {Inner}

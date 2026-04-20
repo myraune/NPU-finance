@@ -8,7 +8,7 @@ import GradientOrb from "@/components/GradientOrb";
 export const metadata: Metadata = {
   title: "Angel Escobedo — Navigating Early Career Success in Finance | NPFIS",
   description:
-    "Join NPFIS on April 15, 2026 at JC 208 for a guest speaker session with Angel Escobedo on navigating internships and building a career in finance.",
+    "Recap of NPFIS's April 15, 2026 guest-speaker session at JC 208 with Angel Escobedo on navigating internships and building a career in finance.",
 };
 
 const event = {
@@ -16,11 +16,6 @@ const event = {
   date: "Wednesday, April 15, 2026",
   time: "12:00 – 2:00 PM",
   location: "Johnson Center, Room 208",
-  locationShort: "JC 208, North Park University",
-  startUtc: "20260415T170000Z",
-  endUtc: "20260415T190000Z",
-  description:
-    "Gain information on how to navigate through internships and establish your career path.\n\nOur guest speaker has experience at JP Morgan, Morgan Stanley, angel investing, private equity, venture capital, PwC, and is currently an analyst at Old National Bank.\n\nSnacks and beverages will be provided!\n\nSpeaker's LinkedIn: https://www.linkedin.com/in/escobedo-angel",
 };
 
 const SPEAKER_LINKEDIN = "https://www.linkedin.com/in/escobedo-angel";
@@ -78,7 +73,7 @@ const takeaways = [
   "How to navigate internships and build a career path in finance.",
   "Real perspective from bulge-bracket, Big Four, and community banking roles.",
   "Insight into private equity, venture capital, and angel investing.",
-  "Space to ask direct questions — snacks and beverages provided.",
+  "Direct Q&A with the speaker — snacks and beverages included.",
 ];
 
 export default function AngelEscobedoEventPage() {
@@ -94,9 +89,11 @@ export default function AngelEscobedoEventPage() {
           sizes="100vw"
           priority
         />
-        {/* Dark gradient over image regardless of theme — so the hero text always has contrast. */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-base" />
-        <div className="absolute inset-0 bg-grid opacity-40" />
+        {/* Dark gradient kept black all the way to the bottom so white hero
+            text stays readable in BOTH light and dark site themes
+            (the previous `to-base` faded to parchment in light mode). */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/75" />
+        <div className="absolute inset-0 bg-grid opacity-30" />
 
         <div className="relative z-10 px-6 md:px-12 lg:px-16 pt-24 pb-14 md:py-24 max-w-5xl w-full">
           <Link
@@ -155,21 +152,21 @@ export default function AngelEscobedoEventPage() {
             <ScrollReveal delay={100}>
               <div className="space-y-4 md:space-y-5 text-text-secondary text-[15px] md:text-base leading-relaxed max-w-2xl text-pretty">
                 <p>
-                  Angel Escobedo brings a rare breadth of experience — spanning bulge-bracket
+                  Angel Escobedo brought a rare breadth of experience — spanning bulge-bracket
                   investment banking, Big Four advisory, private markets, and community banking.
-                  This session is built for students who want an honest look at how careers
+                  The session was built for students who wanted an honest look at how careers
                   actually get built.
                 </p>
                 <p>
-                  Whether you&apos;re aiming for your first internship or weighing offers, expect
-                  practical advice you can apply the week after.
+                  Whether attendees were aiming for their first internship or weighing offers, the
+                  conversation focused on practical advice they could apply the week after.
                 </p>
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={200}>
               <h3 className="mt-10 md:mt-12 mb-4 md:mb-5 text-xs tracking-[0.15em] uppercase font-medium text-text-tertiary">
-                What you&apos;ll take away
+                What attendees took away
               </h3>
               <ul className="space-y-3 max-w-2xl">
                 {takeaways.map((point) => (
@@ -239,7 +236,7 @@ export default function AngelEscobedoEventPage() {
               <div className="mt-12 md:mt-14 pt-8 md:pt-10 border-t border-border-subtle grid sm:grid-cols-2 gap-5 sm:gap-6 max-w-2xl">
                 <div>
                   <p className="text-xs tracking-[0.15em] uppercase font-medium text-text-tertiary mb-2">
-                    Any questions?
+                    Get in touch
                   </p>
                   <a
                     href={`mailto:${CONTACT_EMAIL}`}
