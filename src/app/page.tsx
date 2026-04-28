@@ -95,44 +95,6 @@ export default function Home() {
 
       <div className="hr-gold" />
 
-      {/* ▌WHAT WE DO — stacked rows with stat badges */}
-      <section className="bg-base py-8">
-        <ScrollReveal>
-          <div className="px-6 md:px-12 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <p className="text-accent text-[11px] tracking-[0.15em] uppercase font-medium">What We Do</p>
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2.5 glass-accent rounded-lg px-4 py-2.5">
-                <p className="text-accent text-lg font-semibold font-data">
-                  <AnimatedCounter target={50} suffix="+" />
-                </p>
-                <p className="text-text-tertiary text-[10px] tracking-wider uppercase">Members</p>
-              </div>
-            </div>
-          </div>
-        </ScrollReveal>
-        {[
-          { num: "01", title: "Investment Workshops", desc: "Hands-on sessions covering stock analysis, portfolio construction, and valuation fundamentals. Learn by doing." },
-          { num: "02", title: "Speaker Series", desc: "Industry professionals share career advice and market insights. Coming soon." },
-          { num: "03", title: "Competitions", desc: "Stock pitch competitions where you present to judges, win prizes, and build your resume. Coming soon." },
-          { num: "04", title: "Career Development", desc: "Resume reviews, mock interviews, LinkedIn optimization, and networking with finance professionals. Coming soon." },
-        ].map((item, i) => (
-          <ScrollReveal key={item.num} delay={i * 80}>
-            <div className="group border-b border-border-subtle hover:bg-surface-1/50 transition-all duration-500 rounded-lg mx-2">
-              <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-16 px-6 md:px-12 py-10 md:py-14">
-                <span className="font-data text-accent-dim text-xs tracking-widest">{item.num}</span>
-                <h3 className="text-xl md:text-2xl font-semibold text-text-primary tracking-tight md:w-72 shrink-0 group-hover:text-accent transition-colors duration-500">{item.title}</h3>
-                <p className="text-text-tertiary text-[15px] leading-relaxed flex-1 max-w-xl group-hover:text-text-secondary transition-colors duration-500">{item.desc}</p>
-                <svg className="w-5 h-5 text-text-muted group-hover:text-accent shrink-0 transform -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                </svg>
-              </div>
-            </div>
-          </ScrollReveal>
-        ))}
-      </section>
-
-      <div className="hr-gold" />
-
       {/* ▌UPCOMING EVENT */}
       <section className="bg-base py-16 md:py-24">
         <div className="px-6 md:px-12 lg:px-16 max-w-7xl mx-auto">
@@ -203,6 +165,44 @@ export default function Home() {
             </Link>
           </ScrollReveal>
         </div>
+      </section>
+
+      <div className="hr-gold" />
+
+      {/* ▌WHAT WE DO — stacked rows with stat badges */}
+      <section className="bg-base py-8">
+        <ScrollReveal>
+          <div className="px-6 md:px-12 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <p className="text-accent text-[11px] tracking-[0.15em] uppercase font-medium">What We Do</p>
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2.5 glass-accent rounded-lg px-4 py-2.5">
+                <p className="text-accent text-lg font-semibold font-data">
+                  <AnimatedCounter target={50} suffix="+" />
+                </p>
+                <p className="text-text-tertiary text-[10px] tracking-wider uppercase">Members</p>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+        {[
+          { num: "01", title: "Investment Workshops", desc: "Hands-on sessions covering stock analysis, portfolio construction, and valuation fundamentals. Learn by doing." },
+          { num: "02", title: "Speaker Series", desc: "Industry professionals share career advice and market insights. Coming soon." },
+          { num: "03", title: "Competitions", desc: "Stock pitch competitions where you present to judges, win prizes, and build your resume. Coming soon." },
+          { num: "04", title: "Career Development", desc: "Resume reviews, mock interviews, LinkedIn optimization, and networking with finance professionals. Coming soon." },
+        ].map((item, i) => (
+          <ScrollReveal key={item.num} delay={i * 80}>
+            <div className="group border-b border-border-subtle hover:bg-surface-1/50 transition-all duration-500 rounded-lg mx-2">
+              <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-16 px-6 md:px-12 py-10 md:py-14">
+                <span className="font-data text-accent-dim text-xs tracking-widest">{item.num}</span>
+                <h3 className="text-xl md:text-2xl font-semibold text-text-primary tracking-tight md:w-72 shrink-0 group-hover:text-accent transition-colors duration-500">{item.title}</h3>
+                <p className="text-text-tertiary text-[15px] leading-relaxed flex-1 max-w-xl group-hover:text-text-secondary transition-colors duration-500">{item.desc}</p>
+                <svg className="w-5 h-5 text-text-muted group-hover:text-accent shrink-0 transform -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
       </section>
 
       <div className="hr-gold" />
