@@ -133,6 +133,80 @@ export default function Home() {
 
       <div className="hr-gold" />
 
+      {/* ▌UPCOMING EVENT */}
+      <section className="bg-base py-16 md:py-24">
+        <div className="px-6 md:px-12 lg:px-16 max-w-7xl mx-auto">
+          <ScrollReveal>
+            <div className="mb-8 md:mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+              <div>
+                <p className="text-accent text-[11px] tracking-[0.15em] uppercase font-medium mb-2">
+                  Upcoming Event
+                </p>
+                <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
+                  Next up
+                </h2>
+              </div>
+              <Link
+                href="/events"
+                className="text-[13px] text-text-tertiary hover:text-accent transition-colors inline-flex items-center gap-2 w-fit group"
+              >
+                All events
+                <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </Link>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={100}>
+            <Link
+              href="/events/elvin-ahmeti-april-2026"
+              className="group relative block overflow-hidden rounded-2xl border border-border-subtle hover:border-accent/40 transition-colors duration-500"
+            >
+              <div className="grid md:grid-cols-[1fr_1.2fr]">
+                {/* Image side */}
+                <div className="relative h-[220px] md:h-auto md:min-h-[260px] overflow-hidden">
+                  <Image
+                    src={images.johnsonCenter}
+                    alt="Johnson Center at North Park University"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-base/70 via-base/30 to-transparent" />
+                  <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-accent/20 backdrop-blur-md px-3 py-1 text-[10px] tracking-[0.12em] uppercase font-medium text-accent border border-accent/30">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                    Upcoming
+                  </span>
+                </div>
+
+                {/* Copy side */}
+                <div className="p-6 sm:p-8 md:p-10 flex flex-col justify-center bg-surface-0/60">
+                  <p className="text-[10px] md:text-[11px] tracking-[0.15em] uppercase font-medium text-text-tertiary mb-3">
+                    April 30, 2026 · 6:30–9:30 PM · JC 211
+                  </p>
+                  <h3 className="text-[22px] sm:text-2xl md:text-3xl font-semibold tracking-tight leading-[1.15] mb-3 text-balance group-hover:text-accent transition-colors duration-500">
+                    A Deal Walkthrough with Guestspeaker Elvin Ahmeti
+                  </h3>
+                  <p className="text-text-tertiary text-sm md:text-[15px] leading-relaxed mb-5 max-w-xl text-pretty">
+                    From handshake to closing: See how a real cross-border deal actually gets done.
+                    Valuation, negotiation, strategy — and the surprises no one sees coming.
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-accent text-sm font-semibold w-fit">
+                    More info
+                    <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </Link>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <div className="hr-gold" />
+
       {/* ▌PAST EVENT — compact recap card, links to detail page */}
       <section className="bg-base py-16 md:py-24">
         <div className="px-6 md:px-12 lg:px-16 max-w-7xl mx-auto">

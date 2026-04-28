@@ -34,10 +34,17 @@ const KNOWN_EVENT_TIMES: Record<string, { startUtc: string; endUtc: string }> = 
     startUtc: "20260415T170000Z",
     endUtc: "20260415T190000Z",
   },
+  "elvin-ahmeti-april-2026": {
+    startUtc: "20260430T233000Z",
+    endUtc: "20260501T023000Z",
+  },
 };
 
 // Events that have a dedicated marketing detail page at /events/<id>.
-const EVENT_DETAIL_ROUTES = new Set<string>(["angel-escobedo-april-2026"]);
+const EVENT_DETAIL_ROUTES = new Set<string>([
+  "angel-escobedo-april-2026",
+  "elvin-ahmeti-april-2026",
+]);
 
 /** Convert compact UTC (YYYYMMDDTHHMMSSZ) into epoch ms. */
 function utcToMs(utc: string): number {
