@@ -7,6 +7,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import GradientOrb from "@/components/GradientOrb";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import BeamCTA from "@/components/BeamCTA";
+import AddToCalendar from "@/components/AddToCalendar";
 
 export default function Home() {
   return (
@@ -110,12 +111,21 @@ export default function Home() {
                     From handshake to closing: See how a real cross-border deal actually gets done.
                     Valuation, negotiation, strategy — and the surprises no one sees coming.
                   </p>
-                  <span className="inline-flex items-center gap-2 text-accent text-sm font-semibold w-fit">
-                    More info
-                    <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                    </svg>
-                  </span>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <AddToCalendar
+                      title="A Deal Walkthrough with Guestspeaker Elvin Ahmeti"
+                      description="A live deal walkthrough covering valuation, negotiation, and cross-border deal strategy. Hosted by NPFIS in collaboration with BSE-330-01 International Finance. Free — snacks and beverages provided."
+                      location="Johnson Center, Room 211"
+                      startUtc="20260430T233000Z"
+                      endUtc="20260501T023000Z"
+                    />
+                    <span className="inline-flex items-center gap-2 text-accent text-sm font-semibold w-fit">
+                      More info
+                      <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                      </svg>
+                    </span>
+                  </div>
                 </div>
               </div>
             </Link>
