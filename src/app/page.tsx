@@ -51,50 +51,6 @@ export default function Home() {
 
       <div className="hr-gold" />
 
-      {/* ▌ABOUT SPLIT — asymmetric */}
-      <section className="grid md:grid-cols-[1.3fr_1fr] md:min-h-screen">
-        <div className="flex flex-col justify-center px-6 md:px-16 lg:px-28 py-24 md:py-0">
-          <ScrollReveal>
-            <p className="text-accent text-[11px] tracking-[0.15em] uppercase font-medium mb-6">Who We Are</p>
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <h2 className="text-4xl md:text-5xl font-semibold leading-tight tracking-[-0.02em] mb-8">
-              Where ambition<br />meets opportunity.
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal delay={200}>
-            <p className="text-text-secondary text-[15px] leading-[1.8] mb-6 max-w-md">
-              We&apos;re a student-run organization dedicated to giving North Park students the tools, knowledge, and connections they need to break into finance — no matter their major.
-            </p>
-          </ScrollReveal>
-          <ScrollReveal delay={300}>
-            <p className="text-text-tertiary text-[15px] leading-[1.8] mb-10 max-w-md">
-              From hands-on investment workshops to Wall Street alumni panels, we create experiences that can&apos;t be found in a textbook.
-            </p>
-          </ScrollReveal>
-          <ScrollReveal delay={400}>
-            <Link href="/about" className="text-accent text-sm tracking-wide hover:text-accent-light transition-colors w-fit group flex items-center gap-2">
-              More about us
-              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </Link>
-          </ScrollReveal>
-        </div>
-        <ScrollReveal direction="left" className="relative group overflow-hidden h-[50vh] md:h-auto md:min-h-[400px] m-0 md:m-8 md:rounded-2xl">
-          <Image
-            src={images.oldMain}
-            alt="Old Main building at North Park University"
-            fill
-            className="object-cover image-reveal"
-            sizes="(max-width: 768px) 100vw, 45vw"
-          />
-          <div className="absolute inset-0 bg-base/10" />
-        </ScrollReveal>
-      </section>
-
-      <div className="hr-gold" />
-
       {/* ▌UPCOMING EVENT */}
       <section className="bg-base py-16 md:py-24">
         <div className="px-6 md:px-12 lg:px-16 max-w-7xl mx-auto">
@@ -165,6 +121,50 @@ export default function Home() {
             </Link>
           </ScrollReveal>
         </div>
+      </section>
+
+      <div className="hr-gold" />
+
+      {/* ▌ABOUT SPLIT — asymmetric */}
+      <section className="grid md:grid-cols-[1.3fr_1fr] md:min-h-screen">
+        <div className="flex flex-col justify-center px-6 md:px-16 lg:px-28 py-24 md:py-0">
+          <ScrollReveal>
+            <p className="text-accent text-[11px] tracking-[0.15em] uppercase font-medium mb-6">Who We Are</p>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <h2 className="text-4xl md:text-5xl font-semibold leading-tight tracking-[-0.02em] mb-8">
+              Where ambition<br />meets opportunity.
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={200}>
+            <p className="text-text-secondary text-[15px] leading-[1.8] mb-6 max-w-md">
+              We&apos;re a student-run organization dedicated to giving North Park students the tools, knowledge, and connections they need to break into finance — no matter their major.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={300}>
+            <p className="text-text-tertiary text-[15px] leading-[1.8] mb-10 max-w-md">
+              From hands-on investment workshops to Wall Street alumni panels, we create experiences that can&apos;t be found in a textbook.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={400}>
+            <Link href="/about" className="text-accent text-sm tracking-wide hover:text-accent-light transition-colors w-fit group flex items-center gap-2">
+              More about us
+              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
+          </ScrollReveal>
+        </div>
+        <ScrollReveal direction="left" className="relative group overflow-hidden h-[50vh] md:h-auto md:min-h-[400px] m-0 md:m-8 md:rounded-2xl">
+          <Image
+            src={images.oldMain}
+            alt="Old Main building at North Park University"
+            fill
+            className="object-cover image-reveal"
+            sizes="(max-width: 768px) 100vw, 45vw"
+          />
+          <div className="absolute inset-0 bg-base/10" />
+        </ScrollReveal>
       </section>
 
       <div className="hr-gold" />
