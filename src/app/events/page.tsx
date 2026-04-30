@@ -27,30 +27,13 @@ const fallbackImages = [
   images.springCampus,
 ];
 
-// Known event UTC times. Kept here so calendar links point at the right
-// moment even if the free-text `date`/`time` fields on the row are loose.
-const KNOWN_EVENT_TIMES: Record<string, { startUtc: string; endUtc: string }> = {
-  "angel-escobedo-april-2026": {
-    startUtc: "20260415T170000Z",
-    endUtc: "20260415T190000Z",
-  },
-  "elvin-ahmeti-april-2026": {
-    startUtc: "20260430T233000Z",
-    endUtc: "20260501T023000Z",
-  },
-};
+import { KNOWN_EVENT_TIMES, utcToMs, fallbackUtc } from "@/lib/event-times";
 
 // Events that have a dedicated marketing detail page at /events/<id>.
 const EVENT_DETAIL_ROUTES = new Set<string>([
   "angel-escobedo-april-2026",
   "elvin-ahmeti-april-2026",
 ]);
-
-/** Convert compact UTC (YYYYMMDDTHHMMSSZ) into epoch ms. */
-function utcToMs(utc: string): number {
-  const iso = `${utc.slice(0, 4)}-${utc.slice(4, 6)}-${utc.slice(6, 8)}T${utc.slice(9, 11)}:${utc.slice(11, 13)}:${utc.slice(13, 15)}Z`;
-  return Date.parse(iso);
-}
 
 export default function Events() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -321,28 +304,3 @@ export default function Events() {
   );
 }
 
-/**
- * Best-effort fallback when an event has no known start/end time.
- * Parses YYYY-MM-DD or "Mon D" and defaults to 12:00–14:00 CDT (UTC-5).
- */
-function fallbackUtc(dateStr: string): { startUtc: string; endUtc: string } {
-  let year = new Date().getUTCFullYear();
-  let month = 1;
-  let day = 1;
-  const iso = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateStr);
-  if (iso) {
-    year = Number(iso[1]);
-    month = Number(iso[2]);
-    day = Number(iso[3]);
-  } else {
-    const parsed = new Date(`${dateStr}, ${year}`);
-    if (!isNaN(parsed.getTime())) {
-      year = parsed.getFullYear();
-      month = parsed.getMonth() + 1;
-      day = parsed.getDate();
-    }
-  }
-  const pad = (n: number) => String(n).padStart(2, "0");
-  const base = `${year}${pad(month)}${pad(day)}T`;
-  return { startUtc: `${base}170000Z`, endUtc: `${base}190000Z` };
-}
