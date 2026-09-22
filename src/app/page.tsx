@@ -55,6 +55,112 @@ export default function Home() {
 
       <div className="hr-gold" />
 
+      {/* ▌PRESIDENT'S WELCOME — letter from Tyler, fall 2026 */}
+      <section className="bg-base py-20 md:py-28">
+        <div className="px-6 md:px-12 lg:px-16 max-w-7xl mx-auto grid md:grid-cols-[1fr_1.6fr] gap-10 md:gap-20">
+          <ScrollReveal>
+            <p className="text-accent text-[11px] tracking-[0.15em] uppercase font-medium mb-5">Welcome · Fall 2026</p>
+            <h2 className="text-4xl md:text-5xl font-semibold leading-tight tracking-[-0.02em]">
+              A note from<br />our President.
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <div className="space-y-5 text-text-secondary text-[15px] md:text-base leading-[1.8] max-w-2xl text-pretty">
+              <p className="text-text-primary text-lg md:text-xl leading-relaxed">
+                Welcome to the North Park University Finance &amp; Investment Society!
+              </p>
+              <p>
+                I&apos;m Tyler, and I&apos;m excited to serve as your President this year. A big welcome to
+                everyone who joined us at Viking Fair and to all of our new members. We&apos;re really
+                glad to have you here.
+              </p>
+              <p>
+                NPU FIS is all about building connections, learning about finance and investing,
+                developing professional skills, and creating opportunities for one another. Whether
+                you&apos;re a Finance major, interested in investing, looking to build your resume, or
+                simply curious about the financial world, you&apos;re more than welcome here.
+              </p>
+              <p>
+                We have a lot planned for this year, including networking events, guest speakers,
+                career and internship opportunities, and a university trading challenge. Most
+                importantly, we want this to be a club where everyone can get involved and meet
+                people with similar interests.
+              </p>
+              <p>
+                I&apos;m looking forward to getting to know all of you. Welcome to the club, and
+                let&apos;s have a great year!
+              </p>
+              <div className="pt-4 border-t border-border-subtle">
+                <p className="text-text-primary font-semibold">Tyler Habetler</p>
+                <p className="text-text-tertiary text-sm">President, NPU Finance &amp; Investment Society</p>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <div className="hr-gold" />
+
+      {/* ▌FEATURED — CME University Trading Challenge (Oct 2026) */}
+      <section className="bg-base py-16 md:py-24">
+        <div className="px-6 md:px-12 lg:px-16 max-w-7xl mx-auto">
+          <ScrollReveal>
+            <div className="mb-8 md:mb-10">
+              <p className="text-accent text-[11px] tracking-[0.15em] uppercase font-medium mb-2">
+                Now forming teams
+              </p>
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
+                Join an NPU trading team
+              </h2>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={100}>
+            <Link
+              href="/events/cme-trading-challenge-2026"
+              className="group relative block overflow-hidden rounded-2xl border border-border-subtle hover:border-accent/40 transition-colors duration-500"
+            >
+              <div className="grid md:grid-cols-[1fr_1.2fr]">
+                <div className="relative h-[220px] md:h-auto md:min-h-[260px] overflow-hidden">
+                  <Image
+                    src={images.fallCampus2}
+                    alt="North Park campus in fall"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-base/70 via-base/30 to-transparent" />
+                  <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-base/70 backdrop-blur-md px-3 py-1 text-[10px] tracking-[0.12em] uppercase font-medium text-text-secondary border border-border-subtle">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                    Oct 4 – 30, 2026
+                  </span>
+                </div>
+                <div className="p-6 sm:p-8 md:p-10 flex flex-col justify-center bg-surface-0/60">
+                  <p className="text-[10px] md:text-[11px] tracking-[0.15em] uppercase font-medium text-text-tertiary mb-3">
+                    Competition · Teams of 3–5
+                  </p>
+                  <h3 className="text-[22px] sm:text-2xl md:text-3xl font-semibold tracking-tight leading-[1.15] mb-3 text-balance group-hover:text-accent transition-colors duration-500">
+                    2026 CME University Trading Challenge
+                  </h3>
+                  <p className="text-text-tertiary text-sm md:text-[15px] leading-relaxed mb-5 max-w-xl text-pretty">
+                    Trade futures in a simulated environment and compete against students worldwide.
+                    No finance major or trading experience needed.
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-accent text-sm font-semibold w-fit">
+                    See details &amp; sign up
+                    <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </Link>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <div className="hr-gold" />
+
       {/* ▌ABOUT SPLIT — asymmetric */}
       <section className="grid md:grid-cols-[1.3fr_1fr] md:min-h-screen">
         <div className="flex flex-col justify-center px-6 md:px-16 lg:px-28 py-24 md:py-0">
@@ -117,7 +223,7 @@ export default function Home() {
         {[
           { num: "01", title: "Investment Workshops", desc: "Hands-on sessions covering stock analysis, portfolio construction, and valuation fundamentals. Learn by doing." },
           { num: "02", title: "Speaker Series", desc: "Industry professionals share career advice and market insights. Coming soon." },
-          { num: "03", title: "Competitions", desc: "Stock pitch competitions where you present to judges, win prizes, and build your resume. Coming soon." },
+          { num: "03", title: "Competitions", desc: "Trading and stock pitch competitions against other universities. This fall: NPU teams in the CME Group University Trading Challenge." },
           { num: "04", title: "Career Development", desc: "Resume reviews, mock interviews, LinkedIn optimization, and networking with finance professionals. Coming soon." },
         ].map((item, i) => (
           <ScrollReveal key={item.num} delay={i * 80}>

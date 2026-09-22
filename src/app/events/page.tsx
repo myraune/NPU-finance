@@ -120,6 +120,30 @@ export default function Events() {
           </ScrollReveal>
         </div>
 
+        {/* Featured competition (static page, not in the events DB) */}
+        <div className="px-6 md:px-12 mb-10">
+          <Link
+            href="/events/cme-trading-challenge-2026"
+            className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-border-subtle hover:border-accent/40 bg-surface-0/60 px-6 py-5 md:px-8 md:py-6 transition-colors duration-500"
+          >
+            <div>
+              <p className="text-[10px] md:text-[11px] tracking-[0.15em] uppercase font-medium text-accent mb-1.5">
+                Competition · Oct 4 – 30, 2026 · Forming teams
+              </p>
+              <p className="text-lg md:text-xl font-semibold tracking-tight group-hover:text-accent transition-colors duration-500">
+                2026 CME University Trading Challenge
+              </p>
+              <p className="text-text-tertiary text-sm mt-1">Teams of 3–5 students. No experience needed.</p>
+            </div>
+            <span className="inline-flex items-center gap-2 text-accent text-sm font-semibold shrink-0">
+              Details &amp; sign up
+              <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </span>
+          </Link>
+        </div>
+
         {!loaded ? (
           <div className="px-6 md:px-12 py-16 text-text-tertiary text-sm">
             Loading events...
