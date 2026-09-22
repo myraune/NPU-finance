@@ -25,28 +25,44 @@ export async function GET() {
   }
 
   try {
-    const resp = await fetch(
-      `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${SYMBOLS.join(",")}&fields=regularMarketPrice,regularMarketChange,regularMarketChangePercent,symbol`,
-      {
-        headers: {
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-        },
-        signal: AbortSignal.timeout(8000),
-      }
-    );
-
-    if (!resp.ok) throw new Error(`Yahoo API ${resp.status}`);
-
-    const data = await resp.json();
-    const results = (data?.quoteResponse?.result || []).map(
-      (q: { symbol: string; regularMarketPrice: number; regularMarketChange: number; regularMarketChangePercent: number }) => ({
-        symbol: q.symbol,
-        price: q.regularMarketPrice?.toFixed(2) ?? "—",
-        change: (q.regularMarketChange >= 0 ? "+" : "") + q.regularMarketChange?.toFixed(2),
-        pct: (q.regularMarketChange >= 0 ? "+" : "") + q.regularMarketChangePercent?.toFixed(2) + "%",
-        up: q.regularMarketChange >= 0,
+    // Yahoo's v7 /quote endpoint now requires a crumb (401), so pull each
+    // symbol from the public v8 /chart endpoint instead. range=1d makes
+    // chartPreviousClose the prior session's close.
+    const settled = await Promise.allSettled(
+      SYMBOLS.map(async (symbol) => {
+        const resp = await fetch(
+          `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=1d&interval=1d`,
+          {
+            headers: {
+              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            },
+            signal: AbortSignal.timeout(8000),
+          }
+        );
+        if (!resp.ok) throw new Error(`Yahoo API ${resp.status}`);
+        const data = await resp.json();
+        const meta = data?.chart?.result?.[0]?.meta;
+        const price = meta?.regularMarketPrice;
+        const prev = meta?.chartPreviousClose ?? meta?.previousClose;
+        if (typeof price !== "number" || typeof prev !== "number" || prev === 0) {
+          throw new Error(`No quote for ${symbol}`);
+        }
+        const change = price - prev;
+        const pct = (change / prev) * 100;
+        const sign = change >= 0 ? "+" : "";
+        return {
+          symbol,
+          price: price.toFixed(2),
+          change: sign + change.toFixed(2),
+          pct: sign + pct.toFixed(2) + "%",
+          up: change >= 0,
+        };
       })
     );
+
+    const results = settled
+      .filter((r): r is PromiseFulfilledResult<CachedData["quotes"][number]> => r.status === "fulfilled")
+      .map((r) => r.value);
 
     if (results.length > 0) {
       cache = { quotes: results, timestamp: now };

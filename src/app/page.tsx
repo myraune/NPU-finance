@@ -65,7 +65,7 @@ export default function Home() {
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={100}>
-            <div className="space-y-5 text-text-secondary text-[15px] md:text-base leading-[1.8] max-w-2xl text-pretty">
+            <div className="space-y-5 text-text-secondary text-[15px] md:text-[16px] leading-[1.8] max-w-2xl text-pretty">
               <p className="text-text-primary text-lg md:text-xl leading-relaxed">
                 Welcome to the North Park University Finance &amp; Investment Society!
               </p>

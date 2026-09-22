@@ -126,7 +126,7 @@ export default function CmeTradingChallengePage() {
             </ScrollReveal>
 
             <ScrollReveal delay={100}>
-              <div className="space-y-4 md:space-y-5 text-text-secondary text-[15px] md:text-base leading-relaxed max-w-2xl text-pretty">
+              <div className="space-y-4 md:space-y-5 text-text-secondary text-[15px] md:text-[16px] leading-relaxed max-w-2xl text-pretty">
                 <p>
                   The CME Group University Trading Challenge lets students experience futures
                   trading in a simulated environment and compete against other universities.
@@ -253,7 +253,7 @@ export default function CmeTradingChallengePage() {
             <h2 className="text-[28px] sm:text-3xl md:text-5xl font-bold tracking-tight mb-5 md:mb-6 leading-[1.1] text-balance">
               Want a spot on an NPU team?
             </h2>
-            <p className="text-text-tertiary text-sm sm:text-base md:text-lg mb-8 md:mb-10">
+            <p className="text-text-tertiary text-sm sm:text-[16px] md:text-lg mb-8 md:mb-10">
               Let us know and we&apos;ll place you on a team. Bring friends if you like.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
