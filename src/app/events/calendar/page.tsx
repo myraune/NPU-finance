@@ -27,7 +27,7 @@ export default function EventCalendar() {
     fetch("/api/events")
       .then((r) => r.json())
       .then((data: CalendarEvent[]) => {
-        setEvents(data);
+        setEvents(Array.isArray(data) ? data : []);
         setLoaded(true);
       })
       .catch(() => setLoaded(true));

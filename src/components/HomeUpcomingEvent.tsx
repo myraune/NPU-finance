@@ -32,7 +32,7 @@ export default function HomeUpcomingEvent() {
   useEffect(() => {
     fetch("/api/events")
       .then((r) => r.json())
-      .then((data) => { setEvents(data); setLoaded(true); })
+      .then((data) => { setEvents(Array.isArray(data) ? data : []); setLoaded(true); })
       .catch(() => setLoaded(true));
   }, []);
 
