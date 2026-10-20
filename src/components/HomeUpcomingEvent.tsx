@@ -6,13 +6,8 @@ import Link from "next/link";
 import { images } from "@/lib/images";
 import ScrollReveal from "@/components/ScrollReveal";
 import AddToCalendar from "@/components/AddToCalendar";
-import { KNOWN_EVENT_TIMES, utcToMs, fallbackUtc } from "@/lib/event-times";
+import { KNOWN_EVENT_TIMES, EVENT_DETAIL_ROUTES, utcToMs, fallbackUtc } from "@/lib/event-times";
 
-// Events that have a dedicated detail page.
-const EVENT_DETAIL_ROUTES = new Set<string>([
-  "angel-escobedo-april-2026",
-  "elvin-ahmeti-april-2026",
-]);
 
 interface Event {
   id: string;

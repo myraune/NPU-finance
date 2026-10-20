@@ -18,7 +18,18 @@ export const KNOWN_EVENT_TIMES: Record<
     startUtc: "20260430T233000Z", // 6:30 PM CDT
     endUtc: "20260501T023000Z",   // 9:30 PM CDT
   },
+  "christopher-chaidez-october-2026": {
+    startUtc: "20261021T170000Z", // 12:00 PM CDT
+    endUtc: "20261021T190000Z",   // 2:00 PM CDT
+  },
 };
+
+/** Events that have a dedicated detail page at /events/<id>. */
+export const EVENT_DETAIL_ROUTES = new Set<string>([
+  "angel-escobedo-april-2026",
+  "elvin-ahmeti-april-2026",
+  "christopher-chaidez-october-2026",
+]);
 
 /** Parse compact UTC (YYYYMMDDTHHMMSSZ) → epoch ms. */
 export function utcToMs(utc: string): number {

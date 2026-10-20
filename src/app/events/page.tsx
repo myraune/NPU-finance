@@ -27,13 +27,8 @@ const fallbackImages = [
   images.springCampus,
 ];
 
-import { KNOWN_EVENT_TIMES, utcToMs, fallbackUtc } from "@/lib/event-times";
+import { KNOWN_EVENT_TIMES, EVENT_DETAIL_ROUTES, utcToMs, fallbackUtc } from "@/lib/event-times";
 
-// Events that have a dedicated marketing detail page at /events/<id>.
-const EVENT_DETAIL_ROUTES = new Set<string>([
-  "angel-escobedo-april-2026",
-  "elvin-ahmeti-april-2026",
-]);
 
 export default function Events() {
   const [events, setEvents] = useState<Event[]>([]);
